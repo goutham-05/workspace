@@ -1,0 +1,285 @@
+.floorPlanRootRootRoot {
+    width: 953px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .whiteRectangle {
+    width: 892px;
+    height: 609px;
+    left: 60.5px;
+    top: 1.13px;
+    position: absolute;
+    background-color: rgba(253, 255, 240, 0.4);
+  }
+  .whiteRectangle1 {
+    width: 60.5px;
+    height: 346px;
+    left: 3.78px;
+    top: 260px;
+    position: absolute;
+    background-color: rgba(253, 255, 240, 0.4);
+  }
+  .flexRow {
+    width: 855px;
+    height: 550px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 44.5px 57.3px 15.5px 40.7px;
+    background-size: cover;
+    background-image: url("https://file.rendit.io/n/1MxUsYqhqesILDO5qSCQ.png");
+    mix-blend-mode: multiply;
+  }
+  .flexColumn {
+    height: 445px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 52.3px 0px;
+  }
+  .flexRow1 {
+    height: 29px;
+    gap: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 32.9px 0px;
+  }
+  .flexRow2 {
+    height: 29px;
+    gap: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 34.8px 0px;
+  }
+  .flexRow3 {
+    height: 29px;
+    gap: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 31px 0px 29px;
+  }
+  .flexColumn1 {
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .flexRow4 {
+    width: 568px;
+    height: 320px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .ellipse29 {
+    width: 29px;
+    height: 29px;
+    align-self: flex-end;
+    margin: 0px 61.9px 2.94px 0px;
+  }
+  .flexColumn2 {
+    height: 318px;
+    gap: 69.1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 0px 92.9px 0px 0px;
+    padding: 1px 0px;
+  }
+  .flexColumn3 {
+    width: 34.8px;
+    height: 313px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin: 0px 58.1px 0px 0px;
+    padding: 3.87px 0px;
+  }
+  .ellipse19 {
+    width: 29px;
+    height: 29px;
+    margin: 0px 0px 69.7px 0px;
+  }
+  .ellipse1 {
+    width: 29px;
+    height: 29px;
+    align-self: flex-start;
+    margin: 0px 0px 62px 0px;
+  }
+  .flexColumn4 {
+    width: 34.8px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0px 87.1px 0px 0px;
+  }
+  .ellipse20 {
+    width: 29px;
+    height: 29px;
+    align-self: flex-end;
+    margin: 0px 1.94px 71.6px 0px;
+  }
+  .ellipse8 {
+    width: 29px;
+    height: 29px;
+    margin: 0px 0px 60px 0px;
+  }
+  .ellipse3 {
+    width: 29px;
+    height: 29px;
+    align-self: flex-end;
+    margin: 0px 0px 69.7px 0px;
+  }
+  .ellipse9 {
+    width: 29px;
+    height: 29px;
+    margin: 0px 0px 0px 1.94px;
+  }
+  .flexColumn5 {
+    width: 34.8px;
+    height: 318px;
+    gap: 69.7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 0px 61.9px 0px 0px;
+    padding: 1px 0px;
+  }
+  .ellipse18 {
+    width: 29px;
+    height: 29px;
+    align-self: flex-end;
+  }
+  .flexColumn6 {
+    width: 43.6px;
+    height: 320px;
+    gap: 69.7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  .flexColumn7 {
+    width: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+    padding: 0px 0px 0px 11.6px;
+  }
+  .bifiltercircle {
+    width: 31px;
+    height: 31px;
+    left: 11.6px;
+    top: 0px;
+    position: absolute;
+  }
+  .ellipse16 {
+    width: 32px;
+    height: 32px;
+    position: relative;
+  }
+  .flexRow5 {
+    width: 424px;
+    height: 89.1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12.6px 0px 132px;
+  }
+  .ellipse {
+    width: 29px;
+    height: 29px;
+    align-self: flex-end;
+    margin: 0px 0px 16.5px 0px;
+  }
+  .flexRow6 {
+    height: 89.1px;
+    gap: 50.3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .ellipse14 {
+    width: 29px;
+    height: 29px;
+    align-self: flex-end;
+    margin: 0px 0px 13.6px 0px;
+  }
+  .flexRow7 {
+    height: 89.1px;
+    gap: 13.6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .flexColumn8 {
+    width: 81.3px;
+    height: 89.1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .flexRow8 {
+    width: 81.3px;
+    height: 29px;
+    position: relative;
+    gap: 23.2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: stretch;
+    align-items: center;
+    padding: 29px 0px 0px 0px;
+  }
+  .ellipse12 {
+    width: 29px;
+    height: 29px;
+    margin: 0px 0px 0px 23.2px;
+  }
+  .flexColumn9 {
+    width: 85.2px;
+    gap: 3.87px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .flexRow9 {
+    width: 85.2px;
+    height: 29px;
+    position: relative;
+    gap: 27.1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: stretch;
+    align-items: center;
+    padding: 27.1px 0px 0px 0px;
+  }
+  .ellipse6 {
+    width: 29px;
+    height: 29px;
+    margin: 0px 0px 0px 27.1px;
+  }
+  
