@@ -161,6 +161,7 @@ export const FloorPlanRootRoot1 = () => {
                 }}
               />
             </FlexColumn3>
+
             <FlexColumn4>
               <Ellipse20
                 onClick={(e) => onSelectSeat(e)}
@@ -191,6 +192,8 @@ export const FloorPlanRootRoot1 = () => {
                 }}
               />
             </FlexColumn4>
+
+            {/* Table 4 */}
             <FlexColumn5>
               <Ellipse18
                 onClick={(e) => onSelectSeat(e)}
@@ -208,7 +211,6 @@ export const FloorPlanRootRoot1 = () => {
               />
             </FlexColumn5>
 
-            {/* Table 4 */}
             <FlexColumn6>
               <Ellipse21
                 onClick={(e) => onSelectSeat(e)}
@@ -217,11 +219,12 @@ export const FloorPlanRootRoot1 = () => {
                   cursor: "pointer",
                 }}
               />
+
               <FlexColumn7>
-                <Bifiltercircle
+                {/* <Bifiltercircle
                   onClick={(e) => onSelectSeat(e)}
                   src={seatStatus}
-                />
+                /> */}
                 <Ellipse16
                   onClick={(e) => onSelectSeat(e)}
                   src={seatStatus}
@@ -242,7 +245,7 @@ export const FloorPlanRootRoot1 = () => {
                 cursor: "pointer",
               }}
             />
-            
+
             {/* Desk two */}
             <FlexRow6>
               <Ellipse14
@@ -512,14 +515,7 @@ const FlexColumn7 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-self: stretch;
-  padding: 0px 0px 0px 11.6px;
-`;
-const Bifiltercircle = styled.img`
-  width: 31px;
-  height: 31px;
-  left: 11.6px;
-  top: 0px;
-  position: absolute;
+  padding: 0px 0px 0px 0px;
 `;
 const Ellipse16 = styled.img`
   width: 32px;
