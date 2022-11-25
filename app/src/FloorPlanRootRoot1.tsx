@@ -535,7 +535,7 @@ const Ellipse = styled.img`
   width: 29px;
   height: 29px;
   align-self: flex-end;
-  margin: 0px 0px 16.5px 0px;
+  margin: 0px 0px 13.5px 0px;
 `;
 const FlexRow6 = styled.div`
   height: 89.1px;
