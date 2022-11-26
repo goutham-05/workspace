@@ -2,55 +2,230 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 
 const seatingStatus = {
-  avaialable: `https://file.rendit.io/n/xUPiyA7zn7ukotinQgzQ.svg`,
+  booked: `https://file.rendit.io/n/xUPiyA7zn7ukotinQgzQ.svg`,
   selected: `https://file.rendit.io/n/OK851SCi8IATLrydtCZo.svg`,
-  booked: `https://file.rendit.io/n/tnihUMst1yC7I8uJtHU9.svg`,
+  available: `https://file.rendit.io/n/tnihUMst1yC7I8uJtHU9.svg`,
 };
 
 enum SEATINGTYPE {
-  LARGE,
-  CIRCULAR,
-  SQUARE,
+  LARGE = "LARGE",
+  CIRCULAR = "CIRCULAR",
+  SQUARE = "SQUARE",
 }
 
 enum SEATING_STATUS {
-  AVAIALABLE,
-  SELECTED,
-  BOOKED,
+  AVAilABLE = "AVAilABLE",
+  SELECTED = "SELECTED",
+  BOOKED = "BOOKED",
 }
 
 export interface SeatingType {
   id: string;
   category: SEATINGTYPE;
   status: SEATING_STATUS;
+  seatNo: number;
 }
 
 export const FloorPlanRootRoot1 = () => {
-  const [seatStatus, selectedStatus] = useState(seatingStatus.avaialable);
+  const [seatStatus, selectedStatus] = useState(seatingStatus.available);
 
-  const onSelectSeat = useCallback((event: any) => {
-    console.log(event);
+  const [selectedSeats, setSelectedSeats] = useState<SeatingType[]>([]);
+
+  const [selectedSeat, setSelectedSeat] = useState<SeatingType>(
+    {} as SeatingType
+  );
+
+  const onSelectSeat = useCallback((data: any) => {
+    console.log(data);
 
     selectedStatus(seatingStatus.selected);
+    setSelectedSeat(data);
   }, []);
 
   const seatingTableList: SeatingType[] = [
     {
       id: "largeTable1",
       category: SEATINGTYPE.LARGE,
-      status: SEATING_STATUS.AVAIALABLE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 1,
     },
     {
       id: "largeTable2",
       category: SEATINGTYPE.LARGE,
-      status: SEATING_STATUS.AVAIALABLE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 2,
     },
     {
-      id: "circularTable1",
-      category: SEATINGTYPE.CIRCULAR,
-      status: SEATING_STATUS.AVAIALABLE,
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 3,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 4,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 5,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 6,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 7,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 8,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 9,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 10,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 11,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 12,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 13,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 14,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 15,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 16,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 17,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 18,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 19,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 20,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 21,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 22,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 23,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 24,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 25,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 26,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 27,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 28,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 29,
+    },
+    {
+      id: "squareTable1",
+      category: SEATINGTYPE.SQUARE,
+      status: SEATING_STATUS.AVAilABLE,
+      seatNo: 30,
     },
   ];
+
+  console.log("Koca: ", selectedSeat);
 
   return (
     <FloorPlanRootRootRoot>
@@ -58,19 +233,45 @@ export const FloorPlanRootRoot1 = () => {
       <WhiteRectangle1 />
       <FlexRow>
         <FlexColumn>
+          {/* large table left */}
           <FlexRow1>
             {seatingTableList
-              .filter((table) => table.category === SEATINGTYPE.LARGE)
+              .filter((table) => [1, 2].includes(table.seatNo))
               .map((table, index) => (
                 <Ellipse21
                   key={index}
                   onClick={() => onSelectSeat(table)}
-                  src={seatStatus}
+                  src={
+                    selectedSeat?.seatNo === table.seatNo
+                      ? seatingStatus.selected
+                      : seatingStatus.available
+                  }
                   style={{
                     cursor: "pointer",
                   }}
                 />
               ))}
+          </FlexRow1>
+
+          {/* large table right */}
+          <FlexRow2>
+            {seatingTableList
+              .filter((table) => [3, 4].includes(table.seatNo))
+              .map((table, index) => (
+                <Ellipse21
+                  key={index}
+                  onClick={() => onSelectSeat(table)}
+                  src={
+                    selectedSeat?.seatNo === table.seatNo
+                      ? seatingStatus.selected
+                      : seatingStatus.available
+                  }
+                  style={{
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
+
             {/* <Ellipse21
               onClick={(e) => onSelectSeat(e)}
               src={seatStatus}
@@ -85,25 +286,28 @@ export const FloorPlanRootRoot1 = () => {
                 cursor: "pointer",
               }}
             /> */}
-          </FlexRow1>
-          <FlexRow2>
-            <Ellipse21
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            />
-            <Ellipse21
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            />
           </FlexRow2>
+
+          {/* large table bottom */}
           <FlexRow3>
-            <Ellipse21
+            {seatingTableList
+              .filter((table) => [5, 6].includes(table.seatNo))
+              .map((table, index) => (
+                <Ellipse21
+                  key={index}
+                  onClick={() => onSelectSeat(table)}
+                  src={
+                    selectedSeat?.seatNo === table.seatNo
+                      ? seatingStatus.selected
+                      : seatingStatus.available
+                  }
+                  style={{
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
+
+            {/* <Ellipse21
               onClick={(e) => onSelectSeat(e)}
               src={seatStatus}
               style={{
@@ -116,14 +320,46 @@ export const FloorPlanRootRoot1 = () => {
               style={{
                 cursor: "pointer",
               }}
-            />
+            /> */}
           </FlexRow3>
         </FlexColumn>
         <FlexColumn1>
           <FlexRow4>
-            <Ellipse29 onClick={(e) => onSelectSeat(e)} src={seatStatus} />
+            {seatingTableList
+              .filter((table) => [7].includes(table.seatNo))
+              .map((table, index) => (
+                <Ellipse29
+                  key={index}
+                  onClick={() => onSelectSeat(table)}
+                  src={
+                    selectedSeat?.seatNo === table.seatNo
+                      ? seatingStatus.selected
+                      : seatingStatus.available
+                  }
+                  style={{
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
             <FlexColumn2>
-              <Ellipse21
+              {seatingTableList
+                .filter((table) => [8, 9].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse21
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {/* <Ellipse21
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -136,10 +372,61 @@ export const FloorPlanRootRoot1 = () => {
                 style={{
                   cursor: "pointer",
                 }}
-              />
+              /> */}
             </FlexColumn2>
             <FlexColumn3>
-              <Ellipse19
+              {seatingTableList
+                .filter((table) => [10].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse19
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {seatingTableList
+                .filter((table) => [11].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse1
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {seatingTableList
+                .filter((table) => [12].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse21
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {/* <Ellipse19
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -159,11 +446,79 @@ export const FloorPlanRootRoot1 = () => {
                 style={{
                   cursor: "pointer",
                 }}
-              />
+              /> */}
             </FlexColumn3>
 
             <FlexColumn4>
-              <Ellipse20
+              {seatingTableList
+                .filter((table) => [13].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse20
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {seatingTableList
+                .filter((table) => [14].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse8
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {seatingTableList
+                .filter((table) => [15].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse3
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {seatingTableList
+                .filter((table) => [16].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse3
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {/* <Ellipse20
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -184,18 +539,53 @@ export const FloorPlanRootRoot1 = () => {
                   cursor: "pointer",
                 }}
               />
-              <Ellipse9
+              <Ellipse3
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
                   cursor: "pointer",
                 }}
-              />
+              /> */}
             </FlexColumn4>
 
             {/* Table 4 */}
+
             <FlexColumn5>
-              <Ellipse18
+              {seatingTableList
+                .filter((table) => [17].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse18
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {seatingTableList
+                .filter((table) => [18].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse21
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {/* <Ellipse18
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -208,104 +598,268 @@ export const FloorPlanRootRoot1 = () => {
                 style={{
                   cursor: "pointer",
                 }}
-              />
+              /> */}
             </FlexColumn5>
 
             <FlexColumn6>
-              <Ellipse21
+              {seatingTableList
+                .filter((table) => [19].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse21
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {/* <Ellipse21
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
                   cursor: "pointer",
                 }}
-              />
+              /> */}
 
               <FlexColumn7>
-                {/* <Bifiltercircle
-                  onClick={(e) => onSelectSeat(e)}
-                  src={seatStatus}
-                /> */}
-                <Ellipse16
+                {seatingTableList
+                  .filter((table) => [20].includes(table.seatNo))
+                  .map((table, index) => (
+                    <Ellipse16
+                      key={index}
+                      onClick={() => onSelectSeat(table)}
+                      src={
+                        selectedSeat?.seatNo === table.seatNo
+                          ? seatingStatus.selected
+                          : seatingStatus.available
+                      }
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+                {/* <Ellipse16
                   onClick={(e) => onSelectSeat(e)}
                   src={seatStatus}
                   style={{
                     cursor: "pointer",
                   }}
-                />
+                /> */}
               </FlexColumn7>
             </FlexColumn6>
           </FlexRow4>
 
           {/* Desk 1 */}
           <FlexRow5>
-            <Ellipse
+            {seatingTableList
+              .filter((table) => [21].includes(table.seatNo))
+              .map((table, index) => (
+                <Ellipse
+                  key={index}
+                  onClick={() => onSelectSeat(table)}
+                  src={
+                    selectedSeat?.seatNo === table.seatNo
+                      ? seatingStatus.selected
+                      : seatingStatus.available
+                  }
+                  style={{
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
+            {/* <Ellipse
               onClick={(e) => onSelectSeat(e)}
               src={seatStatus}
               style={{
                 cursor: "pointer",
               }}
-            />
+            /> */}
 
             {/* Desk two */}
             <FlexRow6>
-              <Ellipse14
+              {seatingTableList
+                .filter((table) => [22].includes(table.seatNo))
+                .map((table, index) => (
+                  <Ellipse14
+                    key={index}
+                    onClick={() => onSelectSeat(table)}
+                    src={
+                      selectedSeat?.seatNo === table.seatNo
+                        ? seatingStatus.selected
+                        : seatingStatus.available
+                    }
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
+
+              {/* <Ellipse14
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
                   cursor: "pointer",
                 }}
-              />
+              /> */}
 
               {/* circular table 1 */}
               <FlexRow7>
                 <FlexColumn8>
                   <FlexRow8>
-                    <Ellipse10
+                    {seatingTableList
+                      .filter((table) => [23, 24].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse10
+                          key={index}
+                          onClick={() => onSelectSeat(table)}
+                          src={
+                            selectedSeat?.seatNo === table.seatNo
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    {/* <Ellipse10
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     />
                     <Ellipse10
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
-                    />
-                    <Ellipse13
+                    /> */}
+                    {/* <Ellipse13
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
-                    />
+                    /> */}
+
+                    {seatingTableList
+                      .filter((table) => [25].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse13
+                          key={index}
+                          onClick={() => onSelectSeat(table)}
+                          src={
+                            selectedSeat?.seatNo === table.seatNo
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
                   </FlexRow8>
-                  <Ellipse12
-                    onClick={(e) => onSelectSeat(e)}
-                    src={seatStatus}
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
+
+                  {seatingTableList
+                    .filter((table) => [26].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse12
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
+                  {/* <Ellipse12
+                      onClick={(e) => onSelectSeat(e)}
+                      src={seatStatus}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    /> */}
                 </FlexColumn8>
 
                 {/* circular table 2 */}
                 <FlexColumn9>
                   {}
                   <FlexRow9>
-                    <Ellipse10
+                    {seatingTableList
+                      .filter((table) => [27, 28].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse10
+                          key={index}
+                          onClick={() => onSelectSeat(table)}
+                          src={
+                            selectedSeat?.seatNo === table.seatNo
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+                    {/* <Ellipse10
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     />
                     <Ellipse10
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
-                    />
-                    <Ellipse13
+                    /> */}
+
+                    {seatingTableList
+                      .filter((table) => [29].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse13
+                          key={index}
+                          onClick={() => onSelectSeat(table)}
+                          src={
+                            selectedSeat?.seatNo === table.seatNo
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+                    {/* <Ellipse13
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
-                    />
+                    /> */}
                   </FlexRow9>
+
+                  {seatingTableList
+                    .filter((table) => [30].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse6
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
+                  {/* 
                   <Ellipse6
                     onClick={(e) => onSelectSeat(e)}
                     src={seatStatus}
                     style={{
                       cursor: "pointer",
                     }}
-                  />
+                  /> */}
                 </FlexColumn9>
               </FlexRow7>
             </FlexRow6>
@@ -316,22 +870,6 @@ export const FloorPlanRootRoot1 = () => {
   );
 };
 
-const Ellipse21 = styled.img`
-  width: 29px;
-  height: 29px;
-`;
-const Ellipse10 = styled.img`
-  width: 29px;
-  height: 29px;
-  position: relative;
-`;
-const Ellipse13 = styled.img`
-  width: 29px;
-  height: 29px;
-  left: 27.1px;
-  top: 0px;
-  position: absolute;
-`;
 const FloorPlanRootRootRoot = styled.div`
   width: 953px;
   position: relative;
@@ -441,102 +979,7 @@ const FlexColumn3 = styled.div`
   margin: 0px 58.1px 0px 0px;
   padding: 3.87px 0px;
 `;
-const Ellipse19 = styled.img`
-  width: 29px;
-  height: 29px;
-  margin: 0px 0px 69.7px 0px;
-`;
-const Ellipse1 = styled.img`
-  width: 29px;
-  height: 29px;
-  align-self: flex-start;
-  margin: 0px 0px 62px 0px;
-`;
-const FlexColumn4 = styled.div`
-  width: 34.8px;
-  height: 320px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 0px 87.1px 0px 0px;
-`;
-const Ellipse20 = styled.img`
-  width: 29px;
-  height: 29px;
-  align-self: flex-end;
-  margin: 0px 1.94px 71.6px 0px;
-`;
-const Ellipse8 = styled.img`
-  width: 29px;
-  height: 29px;
-  margin: 0px 0px 60px 0px;
-`;
-const Ellipse3 = styled.img`
-  width: 29px;
-  height: 29px;
-  align-self: flex-end;
-  margin: 0px 0px 69.7px 0px;
-`;
-const Ellipse9 = styled.img`
-  width: 29px;
-  height: 29px;
-  margin: 0px 0px 0px 1.94px;
-`;
-const FlexColumn5 = styled.div`
-  width: 34.8px;
-  height: 318px;
-  gap: 69.7px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  margin: 0px 61.9px 0px 0px;
-  padding: 1px 0px;
-`;
-const Ellipse18 = styled.img`
-  width: 29px;
-  height: 29px;
-  align-self: flex-end;
-`;
-const FlexColumn6 = styled.div`
-  width: 43.6px;
-  height: 320px;
-  gap: 69.7px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-`;
-const FlexColumn7 = styled.div`
-  width: 32px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: stretch;
-  padding: 0px 0px 0px 0px;
-`;
-const Ellipse16 = styled.img`
-  width: 32px;
-  height: 32px;
-  position: relative;
-`;
-const FlexRow5 = styled.div`
-  width: 424px;
-  height: 89.1px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 12.6px 0px 132px;
-`;
-const Ellipse = styled.img`
-  width: 29px;
-  height: 29px;
-  align-self: flex-end;
-  margin: 0px 0px 13.5px 0px;
-`;
+
 const FlexRow6 = styled.div`
   height: 89.1px;
   gap: 50.3px;
@@ -545,12 +988,7 @@ const FlexRow6 = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Ellipse14 = styled.img`
-  width: 29px;
-  height: 29px;
-  align-self: flex-end;
-  margin: 0px 0px 13.6px 0px;
-`;
+
 const FlexRow7 = styled.div`
   height: 89.1px;
   gap: 13.6px;
@@ -579,11 +1017,7 @@ const FlexRow8 = styled.div`
   align-items: center;
   padding: 29px 0px 0px 0px;
 `;
-const Ellipse12 = styled.img`
-  width: 29px;
-  height: 29px;
-  margin: 0px 0px 0px 23.2px;
-`;
+
 const FlexColumn9 = styled.div`
   width: 85.2px;
   gap: 3.87px;
@@ -604,6 +1038,139 @@ const FlexRow9 = styled.div`
   align-items: center;
   padding: 27.1px 0px 0px 0px;
 `;
+
+const FlexRow5 = styled.div`
+  width: 424px;
+  height: 89.1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12.6px 0px 132px;
+`;
+const FlexColumn5 = styled.div`
+  width: 34.8px;
+  height: 318px;
+  gap: 69.7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0px 61.9px 0px 0px;
+  padding: 1px 0px;
+`;
+const FlexColumn4 = styled.div`
+  width: 34.8px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0px 87.1px 0px 0px;
+`;
+const FlexColumn6 = styled.div`
+  width: 43.6px;
+  height: 320px;
+  gap: 69.7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+`;
+const FlexColumn7 = styled.div`
+  width: 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  padding: 0px 0px 0px 0px;
+`;
+
+const Ellipse21 = styled.img`
+  width: 29px;
+  height: 29px;
+`;
+const Ellipse10 = styled.img`
+  width: 29px;
+  height: 29px;
+  position: relative;
+`;
+const Ellipse13 = styled.img`
+  width: 29px;
+  height: 29px;
+  left: 27.1px;
+  top: 0px;
+  position: absolute;
+`;
+
+const Ellipse19 = styled.img`
+  width: 29px;
+  height: 29px;
+  margin: 0px 0px 69.7px 0px;
+`;
+const Ellipse1 = styled.img`
+  width: 29px;
+  height: 29px;
+  align-self: flex-start;
+  margin: 0px 0px 62px 0px;
+`;
+
+const Ellipse20 = styled.img`
+  width: 29px;
+  height: 29px;
+  align-self: flex-end;
+  margin: 0px 1.94px 71.6px 0px;
+`;
+const Ellipse8 = styled.img`
+  width: 29px;
+  height: 29px;
+  margin: 0px 0px 60px 0px;
+`;
+const Ellipse3 = styled.img`
+  width: 29px;
+  height: 29px;
+  align-self: flex-end;
+  margin: 0px 0px 69.7px 0px;
+`;
+const Ellipse9 = styled.img`
+  width: 29px;
+  height: 29px;
+  margin: 0px 0px 0px 1.94px;
+`;
+
+const Ellipse18 = styled.img`
+  width: 29px;
+  height: 29px;
+  align-self: flex-end;
+`;
+
+const Ellipse16 = styled.img`
+  width: 32px;
+  height: 32px;
+  position: relative;
+`;
+
+const Ellipse = styled.img`
+  width: 29px;
+  height: 29px;
+  align-self: flex-end;
+  margin: 0px 0px 13.5px 0px;
+`;
+
+const Ellipse14 = styled.img`
+  width: 29px;
+  height: 29px;
+  align-self: flex-end;
+  margin: 0px 0px 13.6px 0px;
+`;
+
+const Ellipse12 = styled.img`
+  width: 29px;
+  height: 29px;
+  margin: 0px 0px 0px 23.2px;
+`;
+
 const Ellipse6 = styled.img`
   width: 29px;
   height: 29px;
