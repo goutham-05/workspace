@@ -228,51 +228,73 @@ export const FloorPlanRootRoot1 = () => {
   console.log("Koca: ", selectedSeat);
 
   return (
-    <FloorPlanRootRootRoot>
-      <WhiteRectangle />
-      <WhiteRectangle1 />
-      <FlexRow>
-        <FlexColumn>
-          {/* large table left */}
-          <FlexRow1>
-            {seatingTableList
-              .filter((table) => [1, 2].includes(table.seatNo))
-              .map((table, index) => (
-                <Ellipse21
-                  key={index}
-                  onClick={() => onSelectSeat(table)}
-                  src={
-                    selectedSeat?.seatNo === table.seatNo
-                      ? seatingStatus.selected
-                      : seatingStatus.available
-                  }
-                  style={{
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
-          </FlexRow1>
+    <>
+      <HeaderContentBox>
+        <CalenderSection>Calender Goes here</CalenderSection>
+        <InformationSection>
+          <InformationBlock>
+            <Checkin
+              src={`https://file.rendit.io/n/7mxJaUvi9RsErfESm3T4.svg`}
+            />
+            <Text2>Available</Text2>
+            <Checkin
+              src={`https://file.rendit.io/n/0Vu4tfj410bUFLUPHwdP.svg`}
+            />
+            <Text3>Selected</Text3>
+            <Checkin
+              src={`https://file.rendit.io/n/RSufhvaCPQiSlcD9VmLR.svg`}
+            />
+            <Text4>Reserved</Text4>
+          </InformationBlock>
+        </InformationSection>
+      </HeaderContentBox>
 
-          {/* large table right */}
-          <FlexRow2>
-            {seatingTableList
-              .filter((table) => [3, 4].includes(table.seatNo))
-              .map((table, index) => (
-                <Ellipse21
-                  key={index}
-                  onClick={() => onSelectSeat(table)}
-                  src={
-                    selectedSeat?.seatNo === table.seatNo
-                      ? seatingStatus.selected
-                      : seatingStatus.available
-                  }
-                  style={{
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
+      <ContentBox>
+        <FloorPlanRootRootRoot>
+          <WhiteRectangle />
+          <WhiteRectangle1 />
+          <FlexRow>
+            <FlexColumn>
+              {/* large table left */}
+              <FlexRow1>
+                {seatingTableList
+                  .filter((table) => [1, 2].includes(table.seatNo))
+                  .map((table, index) => (
+                    <Ellipse21
+                      key={index}
+                      onClick={() => onSelectSeat(table)}
+                      src={
+                        selectedSeat?.seatNo === table.seatNo
+                          ? seatingStatus.selected
+                          : seatingStatus.available
+                      }
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+              </FlexRow1>
 
-            {/* <Ellipse21
+              {/* large table right */}
+              <FlexRow2>
+                {seatingTableList
+                  .filter((table) => [3, 4].includes(table.seatNo))
+                  .map((table, index) => (
+                    <Ellipse21
+                      key={index}
+                      onClick={() => onSelectSeat(table)}
+                      src={
+                        selectedSeat?.seatNo === table.seatNo
+                          ? seatingStatus.selected
+                          : seatingStatus.available
+                      }
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+
+                {/* <Ellipse21
               onClick={(e) => onSelectSeat(e)}
               src={seatStatus}
               style={{
@@ -286,28 +308,28 @@ export const FloorPlanRootRoot1 = () => {
                 cursor: "pointer",
               }}
             /> */}
-          </FlexRow2>
+              </FlexRow2>
 
-          {/* large table bottom */}
-          <FlexRow3>
-            {seatingTableList
-              .filter((table) => [5, 6].includes(table.seatNo))
-              .map((table, index) => (
-                <Ellipse21
-                  key={index}
-                  onClick={() => onSelectSeat(table)}
-                  src={
-                    selectedSeat?.seatNo === table.seatNo
-                      ? seatingStatus.selected
-                      : seatingStatus.available
-                  }
-                  style={{
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
+              {/* large table bottom */}
+              <FlexRow3>
+                {seatingTableList
+                  .filter((table) => [5, 6].includes(table.seatNo))
+                  .map((table, index) => (
+                    <Ellipse21
+                      key={index}
+                      onClick={() => onSelectSeat(table)}
+                      src={
+                        selectedSeat?.seatNo === table.seatNo
+                          ? seatingStatus.selected
+                          : seatingStatus.available
+                      }
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
 
-            {/* <Ellipse21
+                {/* <Ellipse21
               onClick={(e) => onSelectSeat(e)}
               src={seatStatus}
               style={{
@@ -321,45 +343,45 @@ export const FloorPlanRootRoot1 = () => {
                 cursor: "pointer",
               }}
             /> */}
-          </FlexRow3>
-        </FlexColumn>
-        <FlexColumn1>
-          <FlexRow4>
-            {seatingTableList
-              .filter((table) => [7].includes(table.seatNo))
-              .map((table, index) => (
-                <Ellipse29
-                  key={index}
-                  onClick={() => onSelectSeat(table)}
-                  src={
-                    selectedSeat?.seatNo === table.seatNo
-                      ? seatingStatus.selected
-                      : seatingStatus.available
-                  }
-                  style={{
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
-            <FlexColumn2>
-              {seatingTableList
-                .filter((table) => [8, 9].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse21
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+              </FlexRow3>
+            </FlexColumn>
+            <FlexColumn1>
+              <FlexRow4>
+                {seatingTableList
+                  .filter((table) => [7].includes(table.seatNo))
+                  .map((table, index) => (
+                    <Ellipse29
+                      key={index}
+                      onClick={() => onSelectSeat(table)}
+                      src={
+                        selectedSeat?.seatNo === table.seatNo
+                          ? seatingStatus.selected
+                          : seatingStatus.available
+                      }
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+                <FlexColumn2>
+                  {seatingTableList
+                    .filter((table) => [8, 9].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse21
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {/* <Ellipse21
+                  {/* <Ellipse21
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -373,60 +395,60 @@ export const FloorPlanRootRoot1 = () => {
                   cursor: "pointer",
                 }}
               /> */}
-            </FlexColumn2>
-            <FlexColumn3>
-              {seatingTableList
-                .filter((table) => [10].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse19
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                </FlexColumn2>
+                <FlexColumn3>
+                  {seatingTableList
+                    .filter((table) => [10].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse19
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {seatingTableList
-                .filter((table) => [11].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse1
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                  {seatingTableList
+                    .filter((table) => [11].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse1
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {seatingTableList
-                .filter((table) => [12].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse21
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                  {seatingTableList
+                    .filter((table) => [12].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse21
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {/* <Ellipse19
+                  {/* <Ellipse19
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -447,78 +469,78 @@ export const FloorPlanRootRoot1 = () => {
                   cursor: "pointer",
                 }}
               /> */}
-            </FlexColumn3>
+                </FlexColumn3>
 
-            <FlexColumn4>
-              {seatingTableList
-                .filter((table) => [13].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse20
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                <FlexColumn4>
+                  {seatingTableList
+                    .filter((table) => [13].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse20
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {seatingTableList
-                .filter((table) => [14].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse8
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                  {seatingTableList
+                    .filter((table) => [14].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse8
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {seatingTableList
-                .filter((table) => [15].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse3
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                  {seatingTableList
+                    .filter((table) => [15].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse3
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {seatingTableList
-                .filter((table) => [16].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse3
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                  {seatingTableList
+                    .filter((table) => [16].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse3
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {/* <Ellipse20
+                  {/* <Ellipse20
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -546,46 +568,46 @@ export const FloorPlanRootRoot1 = () => {
                   cursor: "pointer",
                 }}
               /> */}
-            </FlexColumn4>
+                </FlexColumn4>
 
-            {/* Table 4 */}
+                {/* Table 4 */}
 
-            <FlexColumn5>
-              {seatingTableList
-                .filter((table) => [17].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse18
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                <FlexColumn5>
+                  {seatingTableList
+                    .filter((table) => [17].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse18
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {seatingTableList
-                .filter((table) => [18].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse21
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                  {seatingTableList
+                    .filter((table) => [18].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse21
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {/* <Ellipse18
+                  {/* <Ellipse18
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -599,27 +621,27 @@ export const FloorPlanRootRoot1 = () => {
                   cursor: "pointer",
                 }}
               /> */}
-            </FlexColumn5>
+                </FlexColumn5>
 
-            <FlexColumn6>
-              {seatingTableList
-                .filter((table) => [19].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse21
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                <FlexColumn6>
+                  {seatingTableList
+                    .filter((table) => [19].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse21
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {/* <Ellipse21
+                  {/* <Ellipse21
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -627,11 +649,40 @@ export const FloorPlanRootRoot1 = () => {
                 }}
               /> */}
 
-              <FlexColumn7>
+                  <FlexColumn7>
+                    {seatingTableList
+                      .filter((table) => [20].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse16
+                          key={index}
+                          onClick={() => onSelectSeat(table)}
+                          src={
+                            selectedSeat?.seatNo === table.seatNo
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+                    {/* <Ellipse16
+                  onClick={(e) => onSelectSeat(e)}
+                  src={seatStatus}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                /> */}
+                  </FlexColumn7>
+                </FlexColumn6>
+              </FlexRow4>
+
+              {/* Desk 1 */}
+              <FlexRow5>
                 {seatingTableList
-                  .filter((table) => [20].includes(table.seatNo))
+                  .filter((table) => [21].includes(table.seatNo))
                   .map((table, index) => (
-                    <Ellipse16
+                    <Ellipse
                       key={index}
                       onClick={() => onSelectSeat(table)}
                       src={
@@ -644,36 +695,7 @@ export const FloorPlanRootRoot1 = () => {
                       }}
                     />
                   ))}
-                {/* <Ellipse16
-                  onClick={(e) => onSelectSeat(e)}
-                  src={seatStatus}
-                  style={{
-                    cursor: "pointer",
-                  }}
-                /> */}
-              </FlexColumn7>
-            </FlexColumn6>
-          </FlexRow4>
-
-          {/* Desk 1 */}
-          <FlexRow5>
-            {seatingTableList
-              .filter((table) => [21].includes(table.seatNo))
-              .map((table, index) => (
-                <Ellipse
-                  key={index}
-                  onClick={() => onSelectSeat(table)}
-                  src={
-                    selectedSeat?.seatNo === table.seatNo
-                      ? seatingStatus.selected
-                      : seatingStatus.available
-                  }
-                  style={{
-                    cursor: "pointer",
-                  }}
-                />
-              ))}
-            {/* <Ellipse
+                {/* <Ellipse
               onClick={(e) => onSelectSeat(e)}
               src={seatStatus}
               style={{
@@ -681,26 +703,26 @@ export const FloorPlanRootRoot1 = () => {
               }}
             /> */}
 
-            {/* Desk two */}
-            <FlexRow6>
-              {seatingTableList
-                .filter((table) => [22].includes(table.seatNo))
-                .map((table, index) => (
-                  <Ellipse14
-                    key={index}
-                    onClick={() => onSelectSeat(table)}
-                    src={
-                      selectedSeat?.seatNo === table.seatNo
-                        ? seatingStatus.selected
-                        : seatingStatus.available
-                    }
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  />
-                ))}
+                {/* Desk two */}
+                <FlexRow6>
+                  {seatingTableList
+                    .filter((table) => [22].includes(table.seatNo))
+                    .map((table, index) => (
+                      <Ellipse14
+                        key={index}
+                        onClick={() => onSelectSeat(table)}
+                        src={
+                          selectedSeat?.seatNo === table.seatNo
+                            ? seatingStatus.selected
+                            : seatingStatus.available
+                        }
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      />
+                    ))}
 
-              {/* <Ellipse14
+                  {/* <Ellipse14
                 onClick={(e) => onSelectSeat(e)}
                 src={seatStatus}
                 style={{
@@ -708,28 +730,28 @@ export const FloorPlanRootRoot1 = () => {
                 }}
               /> */}
 
-              {/* circular table 1 */}
-              <FlexRow7>
-                <FlexColumn8>
-                  <FlexRow8>
-                    {seatingTableList
-                      .filter((table) => [23, 24].includes(table.seatNo))
-                      .map((table, index) => (
-                        <Ellipse10
-                          key={index}
-                          onClick={() => onSelectSeat(table)}
-                          src={
-                            selectedSeat?.seatNo === table.seatNo
-                              ? seatingStatus.selected
-                              : seatingStatus.available
-                          }
-                          style={{
-                            cursor: "pointer",
-                          }}
-                        />
-                      ))}
+                  {/* circular table 1 */}
+                  <FlexRow7>
+                    <FlexColumn8>
+                      <FlexRow8>
+                        {seatingTableList
+                          .filter((table) => [23, 24].includes(table.seatNo))
+                          .map((table, index) => (
+                            <Ellipse10
+                              key={index}
+                              onClick={() => onSelectSeat(table)}
+                              src={
+                                selectedSeat?.seatNo === table.seatNo
+                                  ? seatingStatus.selected
+                                  : seatingStatus.available
+                              }
+                              style={{
+                                cursor: "pointer",
+                              }}
+                            />
+                          ))}
 
-                    {/* <Ellipse10
+                        {/* <Ellipse10
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     />
@@ -737,75 +759,75 @@ export const FloorPlanRootRoot1 = () => {
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     /> */}
-                    {/* <Ellipse13
+                        {/* <Ellipse13
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     /> */}
 
-                    {seatingTableList
-                      .filter((table) => [25].includes(table.seatNo))
-                      .map((table, index) => (
-                        <Ellipse13
-                          key={index}
-                          onClick={() => onSelectSeat(table)}
-                          src={
-                            selectedSeat?.seatNo === table.seatNo
-                              ? seatingStatus.selected
-                              : seatingStatus.available
-                          }
-                          style={{
-                            cursor: "pointer",
-                          }}
-                        />
-                      ))}
-                  </FlexRow8>
+                        {seatingTableList
+                          .filter((table) => [25].includes(table.seatNo))
+                          .map((table, index) => (
+                            <Ellipse13
+                              key={index}
+                              onClick={() => onSelectSeat(table)}
+                              src={
+                                selectedSeat?.seatNo === table.seatNo
+                                  ? seatingStatus.selected
+                                  : seatingStatus.available
+                              }
+                              style={{
+                                cursor: "pointer",
+                              }}
+                            />
+                          ))}
+                      </FlexRow8>
 
-                  {seatingTableList
-                    .filter((table) => [26].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse12
-                        key={index}
-                        onClick={() => onSelectSeat(table)}
-                        src={
-                          selectedSeat?.seatNo === table.seatNo
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-                  {/* <Ellipse12
+                      {seatingTableList
+                        .filter((table) => [26].includes(table.seatNo))
+                        .map((table, index) => (
+                          <Ellipse12
+                            key={index}
+                            onClick={() => onSelectSeat(table)}
+                            src={
+                              selectedSeat?.seatNo === table.seatNo
+                                ? seatingStatus.selected
+                                : seatingStatus.available
+                            }
+                            style={{
+                              cursor: "pointer",
+                            }}
+                          />
+                        ))}
+                      {/* <Ellipse12
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                       style={{
                         cursor: "pointer",
                       }}
                     /> */}
-                </FlexColumn8>
+                    </FlexColumn8>
 
-                {/* circular table 2 */}
-                <FlexColumn9>
-                  {}
-                  <FlexRow9>
-                    {seatingTableList
-                      .filter((table) => [27, 28].includes(table.seatNo))
-                      .map((table, index) => (
-                        <Ellipse10
-                          key={index}
-                          onClick={() => onSelectSeat(table)}
-                          src={
-                            selectedSeat?.seatNo === table.seatNo
-                              ? seatingStatus.selected
-                              : seatingStatus.available
-                          }
-                          style={{
-                            cursor: "pointer",
-                          }}
-                        />
-                      ))}
-                    {/* <Ellipse10
+                    {/* circular table 2 */}
+                    <FlexColumn9>
+                      {}
+                      <FlexRow9>
+                        {seatingTableList
+                          .filter((table) => [27, 28].includes(table.seatNo))
+                          .map((table, index) => (
+                            <Ellipse10
+                              key={index}
+                              onClick={() => onSelectSeat(table)}
+                              src={
+                                selectedSeat?.seatNo === table.seatNo
+                                  ? seatingStatus.selected
+                                  : seatingStatus.available
+                              }
+                              style={{
+                                cursor: "pointer",
+                              }}
+                            />
+                          ))}
+                        {/* <Ellipse10
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     />
@@ -814,45 +836,45 @@ export const FloorPlanRootRoot1 = () => {
                       src={seatStatus}
                     /> */}
 
-                    {seatingTableList
-                      .filter((table) => [29].includes(table.seatNo))
-                      .map((table, index) => (
-                        <Ellipse13
-                          key={index}
-                          onClick={() => onSelectSeat(table)}
-                          src={
-                            selectedSeat?.seatNo === table.seatNo
-                              ? seatingStatus.selected
-                              : seatingStatus.available
-                          }
-                          style={{
-                            cursor: "pointer",
-                          }}
-                        />
-                      ))}
-                    {/* <Ellipse13
+                        {seatingTableList
+                          .filter((table) => [29].includes(table.seatNo))
+                          .map((table, index) => (
+                            <Ellipse13
+                              key={index}
+                              onClick={() => onSelectSeat(table)}
+                              src={
+                                selectedSeat?.seatNo === table.seatNo
+                                  ? seatingStatus.selected
+                                  : seatingStatus.available
+                              }
+                              style={{
+                                cursor: "pointer",
+                              }}
+                            />
+                          ))}
+                        {/* <Ellipse13
                       onClick={(e) => onSelectSeat(e)}
                       src={seatStatus}
                     /> */}
-                  </FlexRow9>
+                      </FlexRow9>
 
-                  {seatingTableList
-                    .filter((table) => [30].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse6
-                        key={index}
-                        onClick={() => onSelectSeat(table)}
-                        src={
-                          selectedSeat?.seatNo === table.seatNo
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-                  {/* 
+                      {seatingTableList
+                        .filter((table) => [30].includes(table.seatNo))
+                        .map((table, index) => (
+                          <Ellipse6
+                            key={index}
+                            onClick={() => onSelectSeat(table)}
+                            src={
+                              selectedSeat?.seatNo === table.seatNo
+                                ? seatingStatus.selected
+                                : seatingStatus.available
+                            }
+                            style={{
+                              cursor: "pointer",
+                            }}
+                          />
+                        ))}
+                      {/* 
                   <Ellipse6
                     onClick={(e) => onSelectSeat(e)}
                     src={seatStatus}
@@ -860,15 +882,154 @@ export const FloorPlanRootRoot1 = () => {
                       cursor: "pointer",
                     }}
                   /> */}
-                </FlexColumn9>
-              </FlexRow7>
-            </FlexRow6>
-          </FlexRow5>
-        </FlexColumn1>
-      </FlexRow>
-    </FloorPlanRootRootRoot>
+                    </FlexColumn9>
+                  </FlexRow7>
+                </FlexRow6>
+              </FlexRow5>
+            </FlexColumn1>
+          </FlexRow>
+        </FloorPlanRootRootRoot>
+        <Content2>
+          <SpaceInOrangeCircleRootRootRoot
+            src={`https://file.rendit.io/n/3fTvamPvyQ0H9OgAO3od.png`}
+          />
+          <BookingFormRootRootRoot>Booking Form</BookingFormRootRootRoot>
+        </Content2>
+      </ContentBox>
+    </>
   );
 };
+
+// Booking Form Section
+const BookingFormRootRootRoot = styled.span`
+  color: #2e375b;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Gilroy;
+  white-space: nowrap;
+`;
+
+const SpaceInOrangeCircleRootRootRoot = styled.img`
+  width: 42px;
+  height: 40.4px;
+`;
+
+const YourFullNameRootRootRoot = styled.div`
+  color: #444444;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: Nunito;
+  white-space: nowrap;
+`;
+
+const HeaderContentBox = styled.div`
+  display: flex;
+  background: #f5f5f5;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  align-items: center;
+  grid-area: content;
+  justify-content: center;
+  padding: 16px;
+`;
+
+const CalenderSection = styled.div`
+  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+`;
+
+const InformationSection = styled.div`
+  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+`;
+
+const ContentBox = styled.div`
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  grid-area: content;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const InformationBlock = styled.div`
+  width: 230px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 0px;
+`;
+
+const Checkin = styled.img`
+  width: 16px;
+  height: 16px;
+  margin: 0px 3.43px 0px 0px;
+`;
+const Text1 = styled.div`
+  color: #444444;
+  font-size: 16px;
+  font-family: Nunito;
+  white-space: nowrap;
+`;
+
+const Text2 = styled.div`
+  align-self: flex-start;
+  margin: 0px 17.5px 0px 0px;
+  color: #444444;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: Nunito;
+  white-space: nowrap;
+`;
+const Text3 = styled.div`
+  align-self: flex-start;
+  margin: 0px 15.6px 0px 0px;
+  color: #444444;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: Nunito;
+  white-space: nowrap;
+`;
+
+const Text4 = styled.div`
+  align-self: flex-start;
+  color: #444444;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: Nunito;
+  white-space: nowrap;
+`;
+
+const Content1 = styled.div`
+  background: #a6b8b9;
+  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+`;
+
+const Content2 = styled.div`
+  background: #a6b8b9;
+  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+`;
+
+const Row = styled.div`
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+`;
+
+const Column = styled.div`
+  float: left;
+  width: 100%;
+`;
 
 const FloorPlanRootRootRoot = styled.div`
   width: 953px;
