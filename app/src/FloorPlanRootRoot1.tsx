@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import styled from "styled-components";
 
 const seatingStatus = {
@@ -25,6 +25,38 @@ export interface SeatingType {
   status: SEATING_STATUS;
   seatNo: number;
 }
+
+const ToggleSwitch = () => {
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        padding: "10px 0px 10px 0px",
+        borderTopStyle: "hidden",
+        borderRightStyle: "hidden",
+        borderLeftStyle: "hidden",
+        borderBottomStyle: "groove",
+        color: "whitesmoke",
+      }}
+    >
+      <Label>
+        <SpanElement>Full Day</SpanElement>
+        <ToggleInput
+          checked={checked}
+          type="checkbox"
+          onChange={handleChange}
+        />
+        <Switch />
+      </Label>
+    </div>
+  );
+};
 
 export const FloorPlanRootRoot1 = () => {
   const [seatStatus, selectedStatus] = useState(seatingStatus.available);
@@ -228,7 +260,11 @@ export const FloorPlanRootRoot1 = () => {
   console.log("Koca: ", selectedSeat);
 
   return (
-    <>
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
       <HeaderContentBox>
         <CalenderSection>Calender Goes here</CalenderSection>
         <InformationSection>
@@ -890,28 +926,277 @@ export const FloorPlanRootRoot1 = () => {
           </FlexRow>
         </FloorPlanRootRootRoot>
         <Content2>
-          <SpaceInOrangeCircleRootRootRoot
-            src={`https://file.rendit.io/n/3fTvamPvyQ0H9OgAO3od.png`}
-          />
-          <BookingFormRootRootRoot>Booking Form</BookingFormRootRootRoot>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            <SpaceInOrangeCircleRootRootRoot
+              src={`https://file.rendit.io/n/3fTvamPvyQ0H9OgAO3od.png`}
+            />
+            <BookingFormRootRootRoot>Booking Form</BookingFormRootRootRoot>
+          </div>
+
+          <div>
+            <form>
+              <input
+                placeholder="Jon Doe"
+                style={{
+                  border: "white",
+                  outline: "none",
+                  borderBottom: "1px solid lightgray",
+                  width: "100%",
+                  padding: " 12px 20px",
+                  margin: " 8px 0",
+                  display: " inline-block",
+                  borderRadius: " 4px",
+                  boxSizing: "border-box",
+                }}
+              />
+              <Label>Email</Label>
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="Jon.doe@gmail.com"
+                className="Test"
+                style={{
+                  border: "white",
+                  outline: "none",
+                  borderBottom: "1px solid lightgray",
+                  width: "100%",
+                  padding: " 12px 20px",
+                  margin: " 8px 0",
+                  display: " inline-block",
+                  borderRadius: " 4px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <Label>Time</Label>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  paddingTop: "4px",
+                }}
+              >
+                <div
+                  style={{
+                    flex: 4,
+                    width: "100%",
+                  }}
+                >
+                  <select
+                    style={{
+                      border: "0px",
+                      outline: "none",
+                      width: "100%",
+                      borderBottom: "2px solid #2e375b14",
+                      backgroundColor: "white",
+                    }}
+                    id="number-dd"
+                    name="number"
+                  >
+                    <option value=""></option>
+                    <option value="one">One</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                  </select>
+                </div>
+                <label
+                  style={{
+                    flex: 1,
+                    width: "100%",
+                    textAlign: "center",
+                  }}
+                >
+                  to
+                </label>
+
+                <div
+                  style={{
+                    flex: 4,
+                    width: "100%",
+                  }}
+                >
+                  <select
+                    style={{
+                      border: "0px",
+                      outline: "none",
+                      width: "100%",
+                      borderBottom: "2px solid #2e375b14",
+                      backgroundColor: "white",
+                    }}
+                    id="number-dd"
+                    name="number"
+                  >
+                    <option value=""></option>
+                    <option value="one">One</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <ToggleSwitch />
+              </div>
+
+              <div
+                style={{
+                  paddingTop: "15px",
+                }}
+              >
+                <Label>Company</Label>
+                <input
+                  type="text"
+                  id="fname"
+                  name="firstname"
+                  placeholder="Freespace."
+                  style={{
+                    border: "white",
+                    outline: "none",
+                    borderBottom: "1px solid lightgray",
+                    width: "100%",
+                    padding: " 12px 20px",
+                    margin: " 8px 0",
+                    display: " inline-block",
+                    borderRadius: " 4px",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+
+              <input
+                type="text"
+                id="fname"
+                name="comments"
+                placeholder="Add Comments"
+                style={{
+                  border: "white",
+                  outline: "none",
+                  borderBottom: "1px solid lightgray",
+                  width: "100%",
+                  padding: " 12px 20px",
+                  margin: " 8px 0",
+                  display: " inline-block",
+                  borderRadius: " 4px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <button
+                style={{
+                  backgroundColor: "#F7707D",
+                  border: "none",
+                  fontSize: "14px",
+                  color: "#FDF0ED",
+                  padding: "18px",
+                  textAlign: "center",
+                  textDecoration: "none",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  width: "100%",
+                  borderRadius: "12px",
+                  marginTop: "34px",
+                }}
+                className="button"
+              >
+                Confirm Booking
+              </button>
+            </form>
+          </div>
         </Content2>
       </ContentBox>
-    </>
+    </div>
   );
 };
 
+const Label = styled.label`
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.01em;
+  color: #444444;
+`;
+
+const Switch = styled.div`
+  position: relative;
+  width: 36px;
+  height: 16px;
+  background: #b3b3b3;
+  border-radius: 32px;
+  padding: 2px;
+  transition: 300ms all;
+  &:before {
+    transition: 300ms all;
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 35px;
+    top: 50%;
+    left: 1px;
+    background: white;
+    transform: translate(0, -50%);
+  }
+`;
+
+const ToggleInput = styled.input`
+  opacity: 0;
+  position: absolute;
+  &:checked + ${Switch} {
+    background: green;
+
+    &:before {
+      transform: translate(22px, -50%);
+    }
+  }
+`;
+
+const SpanElement = styled.span`
+  width: 50px;
+  height: 19px;
+  /* Nunito Regular 13 */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.01em;
+  color: #444444;
+  margin-right: 10px;
+`;
+
 // Booking Form Section
 const BookingFormRootRootRoot = styled.span`
+  margin: 0px 12px;
   color: #2e375b;
-  font-size: 16px;
-  font-weight: 700;
   font-family: Gilroy;
   white-space: nowrap;
+  left: 1082px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
 `;
 
 const SpaceInOrangeCircleRootRootRoot = styled.img`
   width: 42px;
   height: 40.4px;
+  left: 71.32%;
+  right: 25.76%;
+  top: 24.43%;
+  bottom: 71.09%;
 `;
 
 const YourFullNameRootRootRoot = styled.div`
@@ -1012,7 +1297,7 @@ const Content1 = styled.div`
 `;
 
 const Content2 = styled.div`
-  background: #a6b8b9;
+  // background: #a6b8b9;
   padding: 0.25rem;
   width: 100%;
   height: 100%;
