@@ -1,6 +1,13 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import styled from "styled-components";
 
+import { format } from "date-fns";
+
+import dateFnsFormat from "date-fns/format";
+
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
+
 const seatingStatus = {
   booked: `https://file.rendit.io/n/xUPiyA7zn7ukotinQgzQ.svg`,
   selected: `https://file.rendit.io/n/OK851SCi8IATLrydtCZo.svg`,
@@ -259,6 +266,22 @@ export const FloorPlanRootRoot1 = () => {
 
   console.log("Koca: ", selectedSeat);
 
+  const [selected, setSelected] = React.useState<Date>();
+
+  let footer = <p>Please pick a day.</p>;
+  if (selected) {
+    footer = <p>You picked {format(selected, "PP")}.</p>;
+  }
+
+  const formatDate = (
+    date: Date,
+    format: string,
+    locale: Locale | undefined
+  ) => {
+    return dateFnsFormat(date, format, { locale });
+  };
+
+  const FORMAT = "MM/dd/yyyy";
   return (
     <div
       style={{
@@ -266,7 +289,17 @@ export const FloorPlanRootRoot1 = () => {
       }}
     >
       <HeaderContentBox>
-        <CalenderSection>Calender Goes here</CalenderSection>
+        <CalenderSection>
+          <DayPickerInput
+            formatDate={() => formatDate(new Date(), "dd/mm/yyy", undefined)}
+            format={FORMAT}
+            placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
+            parseDate={() => new Date()}
+            onDayChange={() => console.log("")}
+            onDayPickerHide={() => console.log("")}
+            onDayPickerShow={() => console.log("")}
+          />
+        </CalenderSection>
         <InformationSection>
           <InformationBlock>
             <Checkin
