@@ -37,7 +37,7 @@ const ToggleSwitch = () => {
     <div
       style={{
         display: "flex",
-        padding: "10px 0px 10px 0px",
+        padding: "18px 0px 10px 0px",
         borderTopStyle: "hidden",
         borderRightStyle: "hidden",
         borderLeftStyle: "hidden",
@@ -946,10 +946,10 @@ export const FloorPlanRootRoot1 = () => {
                   outline: "none",
                   borderBottom: "1px solid lightgray",
                   width: "100%",
-                  padding: " 12px 20px",
-                  margin: " 8px 0",
-                  display: " inline-block",
-                  borderRadius: " 4px",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  display: "inline-block",
+                  borderRadius: "4px",
                   boxSizing: "border-box",
                 }}
               />
@@ -965,10 +965,10 @@ export const FloorPlanRootRoot1 = () => {
                   outline: "none",
                   borderBottom: "1px solid lightgray",
                   width: "100%",
-                  padding: " 12px 20px",
-                  margin: " 8px 0",
-                  display: " inline-block",
-                  borderRadius: " 4px",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  display: "inline-block",
+                  borderRadius: "4px",
                   boxSizing: "border-box",
                 }}
               />
@@ -1059,10 +1059,10 @@ export const FloorPlanRootRoot1 = () => {
                     outline: "none",
                     borderBottom: "1px solid lightgray",
                     width: "100%",
-                    padding: " 12px 20px",
-                    margin: " 8px 0",
-                    display: " inline-block",
-                    borderRadius: " 4px",
+                    padding: "12px 20px",
+                    margin: "8px 0",
+                    display: "inline-block",
+                    borderRadius: "4px",
                     boxSizing: "border-box",
                   }}
                 />
@@ -1078,10 +1078,10 @@ export const FloorPlanRootRoot1 = () => {
                   outline: "none",
                   borderBottom: "1px solid lightgray",
                   width: "100%",
-                  padding: " 12px 20px",
-                  margin: " 8px 0",
-                  display: " inline-block",
-                  borderRadius: " 4px",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  display: "inline-block",
+                  borderRadius: "4px",
                   boxSizing: "border-box",
                 }}
               />
@@ -1124,6 +1124,7 @@ const Label = styled.label`
   align-items: center;
   letter-spacing: -0.01em;
   color: #444444;
+  padding-top: 6px;
 `;
 
 const Switch = styled.div`
