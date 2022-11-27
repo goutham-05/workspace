@@ -362,21 +362,6 @@ export const FloorPlanRootRoot1 = () => {
                       }}
                     />
                   ))}
-
-                {/* <Ellipse21
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            />
-            <Ellipse21
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            /> */}
               </FlexRow2>
 
               {/* large table bottom */}
@@ -397,21 +382,6 @@ export const FloorPlanRootRoot1 = () => {
                       }}
                     />
                   ))}
-
-                {/* <Ellipse21
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            />
-            <Ellipse21
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            /> */}
               </FlexRow3>
             </FlexColumn>
             <FlexColumn1>
@@ -449,21 +419,6 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-
-                  {/* <Ellipse21
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse21
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              /> */}
                 </FlexColumn2>
                 <FlexColumn3>
                   {seatingTableList
@@ -516,30 +471,7 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-
-                  {/* <Ellipse19
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse1
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse21
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              /> */}
                 </FlexColumn3>
-
                 <FlexColumn4>
                   {seatingTableList
                     .filter((table) => [13].includes(table.seatNo))
@@ -608,35 +540,6 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-
-                  {/* <Ellipse20
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse8
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse3
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse3
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              /> */}
                 </FlexColumn4>
 
                 {/* Table 4 */}
@@ -675,21 +578,6 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-
-                  {/* <Ellipse18
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-              <Ellipse21
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              /> */}
                 </FlexColumn5>
 
                 <FlexColumn6>
@@ -710,14 +598,6 @@ export const FloorPlanRootRoot1 = () => {
                       />
                     ))}
 
-                  {/* <Ellipse21
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              /> */}
-
                   <FlexColumn7>
                     {seatingTableList
                       .filter((table) => [20].includes(table.seatNo))
@@ -735,13 +615,6 @@ export const FloorPlanRootRoot1 = () => {
                           }}
                         />
                       ))}
-                    {/* <Ellipse16
-                  onClick={(e) => onSelectSeat(e)}
-                  src={seatStatus}
-                  style={{
-                    cursor: "pointer",
-                  }}
-                /> */}
                   </FlexColumn7>
                 </FlexColumn6>
               </FlexRow4>
@@ -764,13 +637,6 @@ export const FloorPlanRootRoot1 = () => {
                       }}
                     />
                   ))}
-                {/* <Ellipse
-              onClick={(e) => onSelectSeat(e)}
-              src={seatStatus}
-              style={{
-                cursor: "pointer",
-              }}
-            /> */}
 
                 {/* Desk two */}
                 <FlexRow6>
@@ -790,14 +656,6 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-
-                  {/* <Ellipse14
-                onClick={(e) => onSelectSeat(e)}
-                src={seatStatus}
-                style={{
-                  cursor: "pointer",
-                }}
-              /> */}
 
                   {/* circular table 1 */}
                   <FlexRow7>
@@ -819,19 +677,6 @@ export const FloorPlanRootRoot1 = () => {
                               }}
                             />
                           ))}
-
-                        {/* <Ellipse10
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                    />
-                    <Ellipse10
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                    /> */}
-                        {/* <Ellipse13
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                    /> */}
 
                         {seatingTableList
                           .filter((table) => [25].includes(table.seatNo))
@@ -867,13 +712,6 @@ export const FloorPlanRootRoot1 = () => {
                             }}
                           />
                         ))}
-                      {/* <Ellipse12
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    /> */}
                     </FlexColumn8>
 
                     {/* circular table 2 */}
@@ -896,14 +734,6 @@ export const FloorPlanRootRoot1 = () => {
                               }}
                             />
                           ))}
-                        {/* <Ellipse10
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                    />
-                    <Ellipse10
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                    /> */}
 
                         {seatingTableList
                           .filter((table) => [29].includes(table.seatNo))
@@ -921,10 +751,6 @@ export const FloorPlanRootRoot1 = () => {
                               }}
                             />
                           ))}
-                        {/* <Ellipse13
-                      onClick={(e) => onSelectSeat(e)}
-                      src={seatStatus}
-                    /> */}
                       </FlexRow9>
 
                       {seatingTableList
@@ -943,14 +769,6 @@ export const FloorPlanRootRoot1 = () => {
                             }}
                           />
                         ))}
-                      {/* 
-                  <Ellipse6
-                    onClick={(e) => onSelectSeat(e)}
-                    src={seatStatus}
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  /> */}
                     </FlexColumn9>
                   </FlexRow7>
                 </FlexRow6>
