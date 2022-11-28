@@ -29,16 +29,11 @@ enum SEATING_STATUS {
   SELECTED = "SELECTED",
   BOOKED = "BOOKED",
 }
-
-interface IObjectKeys {
-  [key: string]: string | number | Date | string[] | number[] | boolean;
-}
-
 export interface BookingSeat {
   ids: number[];
 }
 
-export interface BookingInfo extends BookingSeat {
+export interface BookingInfo {
   fullName: string;
   email: string;
   seatingIds: string[];
@@ -47,6 +42,7 @@ export interface BookingInfo extends BookingSeat {
   isFullDay: boolean;
   companyName: string;
   comments: string;
+  ids: number[];
 }
 
 export enum Hours {
@@ -104,7 +100,7 @@ const ToggleSwitch = (props: any) => {
   );
 };
 
-export const FloorPlanRootRoot1 = () => {
+export const FloorPlan = () => {
   const [bookingInfo, setBookingInfo] = useState<BookingInfo>(
     {} as BookingInfo
   );
@@ -184,19 +180,27 @@ export const FloorPlanRootRoot1 = () => {
   );
 
   const onConfirmBooking = useCallback(() => {
-    console.log("Koca: bookingInfo", bookingInfo);
+    const hasEmptyFields = Object.keys(bookingInfo).length === 7;
+    if (!selectedSeats.length) {
+      alert("Please select at least one seat");
+    }
 
-    axios.put(API_URL + `update-workspace-by-name`, bookingInfo).then((res) => {
-      console.log("Koca: res ", res);
-      // if (res) {
-      //   setSeatingTableList(res.data.seatingList);
-      // } else {
-      //   setSeatingTableList([]);
-      // }
-    });
-  }, [bookingInfo]);
-
-  console.log("selectedSeats: ", selectedSeats);
+    if (hasEmptyFields) {
+      console.log("Koca: hasEmptyFields", hasEmptyFields);
+      axios
+        .put(API_URL + `update-workspace-by-name`, bookingInfo)
+        .then((res) => {
+          console.log("Koca: res ", res);
+          if (res) {
+            getWorkspace();
+          } else {
+            getWorkspace();
+          }
+        });
+    } else {
+      alert("Please fill all the fields");
+    }
+  }, [bookingInfo, selectedSeats]);
 
   return (
     <div
@@ -245,22 +249,24 @@ export const FloorPlanRootRoot1 = () => {
                 <FlexRow1>
                   {seatingTableList
                     .filter((table) => [1, 2].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse21
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          table.status === SEATING_STATUS.BOOKED
-                            ? seatingStatus.booked
-                            : selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
+                    .map((table, index) => {
+                      return (
+                        <Ellipse21
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      );
+                    })}
                 </FlexRow1>
 
                 {/* large table right */}
@@ -745,10 +751,10 @@ export const FloorPlanRootRoot1 = () => {
                 display: "flex",
               }}
             >
-              <SpaceInOrangeCircleRootRootRoot
+              <BookingFormIcon
                 src={`https://file.rendit.io/n/3fTvamPvyQ0H9OgAO3od.png`}
               />
-              <BookingFormRootRootRoot>Booking Form</BookingFormRootRootRoot>
+              <BookingFormTitle>Booking Form</BookingFormTitle>
             </div>
 
             <div>
@@ -1002,7 +1008,7 @@ const SpanElement = styled.span`
 `;
 
 // Booking Form Section
-const BookingFormRootRootRoot = styled.span`
+const BookingFormTitle = styled.span`
   margin: 0px 12px;
   color: #2e375b;
   font-family: Gilroy;
@@ -1016,7 +1022,7 @@ const BookingFormRootRootRoot = styled.span`
   align-items: center;
 `;
 
-const SpaceInOrangeCircleRootRootRoot = styled.img`
+const BookingFormIcon = styled.img`
   width: 42px;
   height: 40.4px;
   left: 71.32%;

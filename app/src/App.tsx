@@ -1,10 +1,10 @@
 import "./App.css";
-import { FloorPlanRootRoot1 } from "./FloorPlanRootRoot1";
+import { FloorPlan } from "./FloorPlan";
 
 function App() {
   document.body.style.backgroundColor = "#ffffff";
   document.body.style.margin = "0";
-  return <FloorPlanRootRoot1 />;
+  return <FloorPlan />;
 }
 
 export default App;
