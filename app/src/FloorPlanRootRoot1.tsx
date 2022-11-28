@@ -1,12 +1,16 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-
-import { format } from "date-fns";
 
 import dateFnsFormat from "date-fns/format";
 
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
+
+import axios from "axios";
+
+export const API_URL = "http://127.0.0.1:3001/";
+
+const WORKSPACE_NAME = "freespace";
 
 const seatingStatus = {
   booked: `https://file.rendit.io/n/xUPiyA7zn7ukotinQgzQ.svg`,
@@ -21,7 +25,7 @@ enum SEATINGTYPE {
 }
 
 enum SEATING_STATUS {
-  AVAilABLE = "AVAilABLE",
+  AVAILABLE = "AVAILABLE",
   SELECTED = "SELECTED",
   BOOKED = "BOOKED",
 }
@@ -75,8 +79,6 @@ export interface SeatingType {
 }
 
 const ToggleSwitch = (props: any) => {
-  const [checked, setChecked] = useState(false);
-
   return (
     <div
       style={{
@@ -109,188 +111,24 @@ export const FloorPlanRootRoot1 = () => {
 
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
-  const seatingTableList: SeatingType[] = [
-    {
-      id: "largeTable1",
-      category: SEATINGTYPE.LARGE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 1,
-    },
-    {
-      id: "largeTable2",
-      category: SEATINGTYPE.LARGE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 2,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 3,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 4,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 5,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 6,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 7,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 8,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 9,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 10,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 11,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 12,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 13,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 14,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 15,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 16,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 17,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 18,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 19,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 20,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 21,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 22,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 23,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 24,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 25,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 26,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 27,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 28,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 29,
-    },
-    {
-      id: "squareTable1",
-      category: SEATINGTYPE.SQUARE,
-      status: SEATING_STATUS.AVAilABLE,
-      seatNo: 30,
-    },
-  ];
+  const [seatingTableList, setSeatingTableList] = useState<SeatingType[]>([]);
+
+  const getWorkspace = () => {
+    axios
+      .get(API_URL + `get-workspace-by-name/${WORKSPACE_NAME}`)
+      .then((res) => {
+        console.log("Koca: res ", res);
+        if (res) {
+          setSeatingTableList(res.data.seatingList);
+        } else {
+          setSeatingTableList([]);
+        }
+      });
+  };
+
+  useEffect(() => {
+    getWorkspace();
+  }, []);
 
   const formatDate = (
     date: Date,
@@ -347,7 +185,18 @@ export const FloorPlanRootRoot1 = () => {
 
   const onConfirmBooking = useCallback(() => {
     console.log("Koca: bookingInfo", bookingInfo);
+
+    axios.put(API_URL + `update-workspace-by-name`, bookingInfo).then((res) => {
+      console.log("Koca: res ", res);
+      // if (res) {
+      //   setSeatingTableList(res.data.seatingList);
+      // } else {
+      //   setSeatingTableList([]);
+      // }
+    });
   }, [bookingInfo]);
+
+  console.log("selectedSeats: ", selectedSeats);
 
   return (
     <div
@@ -385,99 +234,25 @@ export const FloorPlanRootRoot1 = () => {
         </InformationSection>
       </HeaderContentBox>
 
-      <ContentBox>
-        <FloorPlanRootRootRoot>
-          <WhiteRectangle />
-          <WhiteRectangle1 />
-          <FlexRow>
-            <FlexColumn>
-              {/* large table left */}
-              <FlexRow1>
-                {seatingTableList
-                  .filter((table) => [1, 2].includes(table.seatNo))
-                  .map((table, index) => (
-                    <Ellipse21
-                      key={index}
-                      onClick={() => onSelectSeats(table)}
-                      src={
-                        selectedSeats.includes(table.seatNo)
-                          ? seatingStatus.selected
-                          : seatingStatus.available
-                      }
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
-              </FlexRow1>
-
-              {/* large table right */}
-              <FlexRow2>
-                {seatingTableList
-                  .filter((table) => [3, 4].includes(table.seatNo))
-                  .map((table, index) => (
-                    <Ellipse21
-                      key={index}
-                      onClick={() => onSelectSeats(table)}
-                      src={
-                        selectedSeats.includes(table.seatNo)
-                          ? seatingStatus.selected
-                          : seatingStatus.available
-                      }
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
-              </FlexRow2>
-
-              {/* large table bottom */}
-              <FlexRow3>
-                {seatingTableList
-                  .filter((table) => [5, 6].includes(table.seatNo))
-                  .map((table, index) => (
-                    <Ellipse21
-                      key={index}
-                      onClick={() => onSelectSeats(table)}
-                      src={
-                        selectedSeats.includes(table.seatNo)
-                          ? seatingStatus.selected
-                          : seatingStatus.available
-                      }
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
-              </FlexRow3>
-            </FlexColumn>
-            <FlexColumn1>
-              <FlexRow4>
-                {seatingTableList
-                  .filter((table) => [7].includes(table.seatNo))
-                  .map((table, index) => (
-                    <Ellipse29
-                      key={index}
-                      onClick={() => onSelectSeats(table)}
-                      src={
-                        selectedSeats.includes(table.seatNo)
-                          ? seatingStatus.selected
-                          : seatingStatus.available
-                      }
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
-                <FlexColumn2>
+      {seatingTableList && (
+        <ContentBox>
+          <FloorPlanRootRootRoot>
+            <WhiteRectangle />
+            <WhiteRectangle1 />
+            <FlexRow>
+              <FlexColumn>
+                {/* large table left */}
+                <FlexRow1>
                   {seatingTableList
-                    .filter((table) => [8, 9].includes(table.seatNo))
+                    .filter((table) => [1, 2].includes(table.seatNo))
                     .map((table, index) => (
                       <Ellipse21
                         key={index}
                         onClick={() => onSelectSeats(table)}
                         src={
-                          selectedSeats.includes(table.seatNo)
+                          table.status === SEATING_STATUS.BOOKED
+                            ? seatingStatus.booked
+                            : selectedSeats.includes(table.seatNo)
                             ? seatingStatus.selected
                             : seatingStatus.available
                         }
@@ -486,50 +261,20 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-                </FlexColumn2>
-                <FlexColumn3>
-                  {seatingTableList
-                    .filter((table) => [10].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse19
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
+                </FlexRow1>
 
+                {/* large table right */}
+                <FlexRow2>
                   {seatingTableList
-                    .filter((table) => [11].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse1
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-
-                  {seatingTableList
-                    .filter((table) => [12].includes(table.seatNo))
+                    .filter((table) => [3, 4].includes(table.seatNo))
                     .map((table, index) => (
                       <Ellipse21
                         key={index}
                         onClick={() => onSelectSeats(table)}
                         src={
-                          selectedSeats.includes(table.seatNo)
+                          table.status === SEATING_STATUS.BOOKED
+                            ? seatingStatus.booked
+                            : selectedSeats.includes(table.seatNo)
                             ? seatingStatus.selected
                             : seatingStatus.available
                         }
@@ -538,105 +283,20 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-                </FlexColumn3>
-                <FlexColumn4>
-                  {seatingTableList
-                    .filter((table) => [13].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse20
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
+                </FlexRow2>
 
+                {/* large table bottom */}
+                <FlexRow3>
                   {seatingTableList
-                    .filter((table) => [14].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse8
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-
-                  {seatingTableList
-                    .filter((table) => [15].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse3
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-
-                  {seatingTableList
-                    .filter((table) => [16].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse3
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-                </FlexColumn4>
-
-                {/* Table 4 */}
-
-                <FlexColumn5>
-                  {seatingTableList
-                    .filter((table) => [17].includes(table.seatNo))
-                    .map((table, index) => (
-                      <Ellipse18
-                        key={index}
-                        onClick={() => onSelectSeats(table)}
-                        src={
-                          selectedSeats.includes(table.seatNo)
-                            ? seatingStatus.selected
-                            : seatingStatus.available
-                        }
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      />
-                    ))}
-
-                  {seatingTableList
-                    .filter((table) => [18].includes(table.seatNo))
+                    .filter((table) => [5, 6].includes(table.seatNo))
                     .map((table, index) => (
                       <Ellipse21
                         key={index}
                         onClick={() => onSelectSeats(table)}
                         src={
-                          selectedSeats.includes(table.seatNo)
+                          table.status === SEATING_STATUS.BOOKED
+                            ? seatingStatus.booked
+                            : selectedSeats.includes(table.seatNo)
                             ? seatingStatus.selected
                             : seatingStatus.available
                         }
@@ -645,17 +305,20 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-                </FlexColumn5>
-
-                <FlexColumn6>
+                </FlexRow3>
+              </FlexColumn>
+              <FlexColumn1>
+                <FlexRow4>
                   {seatingTableList
-                    .filter((table) => [19].includes(table.seatNo))
+                    .filter((table) => [7].includes(table.seatNo))
                     .map((table, index) => (
-                      <Ellipse21
+                      <Ellipse29
                         key={index}
                         onClick={() => onSelectSeats(table)}
                         src={
-                          selectedSeats.includes(table.seatNo)
+                          table.status === SEATING_STATUS.BOOKED
+                            ? seatingStatus.booked
+                            : selectedSeats.includes(table.seatNo)
                             ? seatingStatus.selected
                             : seatingStatus.available
                         }
@@ -664,16 +327,17 @@ export const FloorPlanRootRoot1 = () => {
                         }}
                       />
                     ))}
-
-                  <FlexColumn7>
+                  <FlexColumn2>
                     {seatingTableList
-                      .filter((table) => [20].includes(table.seatNo))
+                      .filter((table) => [8, 9].includes(table.seatNo))
                       .map((table, index) => (
-                        <Ellipse16
+                        <Ellipse21
                           key={index}
                           onClick={() => onSelectSeats(table)}
                           src={
-                            selectedSeats.includes(table.seatNo)
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
                               ? seatingStatus.selected
                               : seatingStatus.available
                           }
@@ -682,39 +346,238 @@ export const FloorPlanRootRoot1 = () => {
                           }}
                         />
                       ))}
-                  </FlexColumn7>
-                </FlexColumn6>
-              </FlexRow4>
+                  </FlexColumn2>
+                  <FlexColumn3>
+                    {seatingTableList
+                      .filter((table) => [10].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse19
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
 
-              {/* Desk 1 */}
-              <FlexRow5>
-                {seatingTableList
-                  .filter((table) => [21].includes(table.seatNo))
-                  .map((table, index) => (
-                    <Ellipse
-                      key={index}
-                      onClick={() => onSelectSeats(table)}
-                      src={
-                        selectedSeats.includes(table.seatNo)
-                          ? seatingStatus.selected
-                          : seatingStatus.available
-                      }
-                      style={{
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))}
+                    {seatingTableList
+                      .filter((table) => [11].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse1
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
 
-                {/* Desk two */}
-                <FlexRow6>
+                    {seatingTableList
+                      .filter((table) => [12].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse21
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+                  </FlexColumn3>
+                  <FlexColumn4>
+                    {seatingTableList
+                      .filter((table) => [13].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse20
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    {seatingTableList
+                      .filter((table) => [14].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse8
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    {seatingTableList
+                      .filter((table) => [15].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse3
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    {seatingTableList
+                      .filter((table) => [16].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse3
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+                  </FlexColumn4>
+
+                  {/* Table 4 */}
+
+                  <FlexColumn5>
+                    {seatingTableList
+                      .filter((table) => [17].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse18
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    {seatingTableList
+                      .filter((table) => [18].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse21
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+                  </FlexColumn5>
+
+                  <FlexColumn6>
+                    {seatingTableList
+                      .filter((table) => [19].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse21
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    <FlexColumn7>
+                      {seatingTableList
+                        .filter((table) => [20].includes(table.seatNo))
+                        .map((table, index) => (
+                          <Ellipse16
+                            key={index}
+                            onClick={() => onSelectSeats(table)}
+                            src={
+                              selectedSeats.includes(table.seatNo)
+                                ? seatingStatus.selected
+                                : seatingStatus.available
+                            }
+                            style={{
+                              cursor: "pointer",
+                            }}
+                          />
+                        ))}
+                    </FlexColumn7>
+                  </FlexColumn6>
+                </FlexRow4>
+
+                {/* Desk 1 */}
+                <FlexRow5>
                   {seatingTableList
-                    .filter((table) => [22].includes(table.seatNo))
+                    .filter((table) => [21].includes(table.seatNo))
                     .map((table, index) => (
-                      <Ellipse14
+                      <Ellipse
                         key={index}
                         onClick={() => onSelectSeats(table)}
                         src={
-                          selectedSeats.includes(table.seatNo)
+                          table.status === SEATING_STATUS.BOOKED
+                            ? seatingStatus.booked
+                            : selectedSeats.includes(table.seatNo)
                             ? seatingStatus.selected
                             : seatingStatus.available
                         }
@@ -724,18 +587,80 @@ export const FloorPlanRootRoot1 = () => {
                       />
                     ))}
 
-                  {/* circular table 1 */}
-                  <FlexRow7>
-                    <FlexColumn8>
-                      <FlexRow8>
+                  {/* Desk two */}
+                  <FlexRow6>
+                    {seatingTableList
+                      .filter((table) => [22].includes(table.seatNo))
+                      .map((table, index) => (
+                        <Ellipse14
+                          key={index}
+                          onClick={() => onSelectSeats(table)}
+                          src={
+                            table.status === SEATING_STATUS.BOOKED
+                              ? seatingStatus.booked
+                              : selectedSeats.includes(table.seatNo)
+                              ? seatingStatus.selected
+                              : seatingStatus.available
+                          }
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      ))}
+
+                    {/* circular table 1 */}
+                    <FlexRow7>
+                      <FlexColumn8>
+                        <FlexRow8>
+                          {seatingTableList
+                            .filter((table) => [23, 24].includes(table.seatNo))
+                            .map((table, index) => (
+                              <Ellipse10
+                                key={index}
+                                onClick={() => onSelectSeats(table)}
+                                src={
+                                  table.status === SEATING_STATUS.BOOKED
+                                    ? seatingStatus.booked
+                                    : selectedSeats.includes(table.seatNo)
+                                    ? seatingStatus.selected
+                                    : seatingStatus.available
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              />
+                            ))}
+
+                          {seatingTableList
+                            .filter((table) => [25].includes(table.seatNo))
+                            .map((table, index) => (
+                              <Ellipse13
+                                key={index}
+                                onClick={() => onSelectSeats(table)}
+                                src={
+                                  table.status === SEATING_STATUS.BOOKED
+                                    ? seatingStatus.booked
+                                    : selectedSeats.includes(table.seatNo)
+                                    ? seatingStatus.selected
+                                    : seatingStatus.available
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              />
+                            ))}
+                        </FlexRow8>
+
                         {seatingTableList
-                          .filter((table) => [23, 24].includes(table.seatNo))
+                          .filter((table) => [26].includes(table.seatNo))
                           .map((table, index) => (
-                            <Ellipse10
+                            <Ellipse12
                               key={index}
                               onClick={() => onSelectSeats(table)}
                               src={
-                                selectedSeats.includes(table.seatNo)
+                                table.status === SEATING_STATUS.BOOKED
+                                  ? seatingStatus.booked
+                                  : selectedSeats.includes(table.seatNo)
                                   ? seatingStatus.selected
                                   : seatingStatus.available
                               }
@@ -744,15 +669,61 @@ export const FloorPlanRootRoot1 = () => {
                               }}
                             />
                           ))}
+                      </FlexColumn8>
+
+                      {/* circular table 2 */}
+                      <FlexColumn9>
+                        {}
+                        <FlexRow9>
+                          {seatingTableList
+                            .filter((table) => [27, 28].includes(table.seatNo))
+                            .map((table, index) => (
+                              <Ellipse10
+                                key={index}
+                                onClick={() => onSelectSeats(table)}
+                                src={
+                                  table.status === SEATING_STATUS.BOOKED
+                                    ? seatingStatus.booked
+                                    : selectedSeats.includes(table.seatNo)
+                                    ? seatingStatus.selected
+                                    : seatingStatus.available
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              />
+                            ))}
+
+                          {seatingTableList
+                            .filter((table) => [29].includes(table.seatNo))
+                            .map((table, index) => (
+                              <Ellipse13
+                                key={index}
+                                onClick={() => onSelectSeats(table)}
+                                src={
+                                  table.status === SEATING_STATUS.BOOKED
+                                    ? seatingStatus.booked
+                                    : selectedSeats.includes(table.seatNo)
+                                    ? seatingStatus.selected
+                                    : seatingStatus.available
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              />
+                            ))}
+                        </FlexRow9>
 
                         {seatingTableList
-                          .filter((table) => [25].includes(table.seatNo))
+                          .filter((table) => [30].includes(table.seatNo))
                           .map((table, index) => (
-                            <Ellipse13
+                            <Ellipse6
                               key={index}
                               onClick={() => onSelectSeats(table)}
                               src={
-                                selectedSeats.includes(table.seatNo)
+                                table.status === SEATING_STATUS.BOOKED
+                                  ? seatingStatus.booked
+                                  : selectedSeats.includes(table.seatNo)
                                   ? seatingStatus.selected
                                   : seatingStatus.available
                               }
@@ -761,225 +732,31 @@ export const FloorPlanRootRoot1 = () => {
                               }}
                             />
                           ))}
-                      </FlexRow8>
-
-                      {seatingTableList
-                        .filter((table) => [26].includes(table.seatNo))
-                        .map((table, index) => (
-                          <Ellipse12
-                            key={index}
-                            onClick={() => onSelectSeats(table)}
-                            src={
-                              selectedSeats.includes(table.seatNo)
-                                ? seatingStatus.selected
-                                : seatingStatus.available
-                            }
-                            style={{
-                              cursor: "pointer",
-                            }}
-                          />
-                        ))}
-                    </FlexColumn8>
-
-                    {/* circular table 2 */}
-                    <FlexColumn9>
-                      {}
-                      <FlexRow9>
-                        {seatingTableList
-                          .filter((table) => [27, 28].includes(table.seatNo))
-                          .map((table, index) => (
-                            <Ellipse10
-                              key={index}
-                              onClick={() => onSelectSeats(table)}
-                              src={
-                                selectedSeats.includes(table.seatNo)
-                                  ? seatingStatus.selected
-                                  : seatingStatus.available
-                              }
-                              style={{
-                                cursor: "pointer",
-                              }}
-                            />
-                          ))}
-
-                        {seatingTableList
-                          .filter((table) => [29].includes(table.seatNo))
-                          .map((table, index) => (
-                            <Ellipse13
-                              key={index}
-                              onClick={() => onSelectSeats(table)}
-                              src={
-                                selectedSeats.includes(table.seatNo)
-                                  ? seatingStatus.selected
-                                  : seatingStatus.available
-                              }
-                              style={{
-                                cursor: "pointer",
-                              }}
-                            />
-                          ))}
-                      </FlexRow9>
-
-                      {seatingTableList
-                        .filter((table) => [30].includes(table.seatNo))
-                        .map((table, index) => (
-                          <Ellipse6
-                            key={index}
-                            onClick={() => onSelectSeats(table)}
-                            src={
-                              selectedSeats.includes(table.seatNo)
-                                ? seatingStatus.selected
-                                : seatingStatus.available
-                            }
-                            style={{
-                              cursor: "pointer",
-                            }}
-                          />
-                        ))}
-                    </FlexColumn9>
-                  </FlexRow7>
-                </FlexRow6>
-              </FlexRow5>
-            </FlexColumn1>
-          </FlexRow>
-        </FloorPlanRootRootRoot>
-        <Content2>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
-            <SpaceInOrangeCircleRootRootRoot
-              src={`https://file.rendit.io/n/3fTvamPvyQ0H9OgAO3od.png`}
-            />
-            <BookingFormRootRootRoot>Booking Form</BookingFormRootRootRoot>
-          </div>
-
-          <div>
-            <input
-              onChange={(e) => onChange(e, "fullName")}
-              value={bookingInfo.fullName}
-              placeholder="Jon Doe"
-              required
-              style={{
-                border: "white",
-                outline: "none",
-                borderBottom: "1px solid lightgray",
-                width: "100%",
-                padding: "12px 20px",
-                margin: "8px 0",
-                display: "inline-block",
-                borderRadius: "4px",
-                boxSizing: "border-box",
-              }}
-            />
-            <Label>Email</Label>
-            <input
-              value={bookingInfo.email}
-              onChange={(e) => onChange(e, "email")}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Jon.doe@gmail.com"
-              style={{
-                border: "white",
-                outline: "none",
-                borderBottom: "1px solid lightgray",
-                width: "100%",
-                padding: "12px 20px",
-                margin: "8px 0",
-                display: "inline-block",
-                borderRadius: "4px",
-                boxSizing: "border-box",
-              }}
-            />
-
-            <Label>Time</Label>
+                      </FlexColumn9>
+                    </FlexRow7>
+                  </FlexRow6>
+                </FlexRow5>
+              </FlexColumn1>
+            </FlexRow>
+          </FloorPlanRootRootRoot>
+          <Content2>
             <div
               style={{
                 display: "flex",
-                width: "100%",
-                paddingTop: "4px",
               }}
             >
-              <div
-                style={{
-                  flex: 4,
-                  width: "100%",
-                }}
-              >
-                <select
-                  style={{
-                    border: "0px",
-                    outline: "none",
-                    width: "100%",
-                    borderBottom: "2px solid #2e375b14",
-                    backgroundColor: "white",
-                  }}
-                  id="number-dd"
-                  name="number"
-                  onChange={(e) => onChange(e, "startTime")}
-                >
-                  {Object.keys(Hours).map((hour) => (
-                    <option value={hour}>{hour}</option>
-                  ))}
-                </select>
-              </div>
-              <label
-                style={{
-                  flex: 1,
-                  width: "100%",
-                  textAlign: "center",
-                }}
-              >
-                to
-              </label>
-
-              <div
-                style={{
-                  flex: 4,
-                  width: "100%",
-                }}
-              >
-                <select
-                  style={{
-                    border: "0px",
-                    outline: "none",
-                    width: "100%",
-                    borderBottom: "2px solid #2e375b14",
-                    backgroundColor: "white",
-                  }}
-                  id="number-dd"
-                  name="number"
-                  onChange={(e) => onChange(e, "endTime")}
-                >
-                  {Object.keys(Minutes).map((minute) => (
-                    <option value={minute}>{minute}</option>
-                  ))}
-                </select>
-              </div>
+              <SpaceInOrangeCircleRootRootRoot
+                src={`https://file.rendit.io/n/3fTvamPvyQ0H9OgAO3od.png`}
+              />
+              <BookingFormRootRootRoot>Booking Form</BookingFormRootRootRoot>
             </div>
 
             <div>
-              <ToggleSwitch
-                onChange={(event: any) => onChange(event, "toggle")}
-                value={bookingInfo.isFullDay}
-              />
-            </div>
-
-            <div
-              style={{
-                paddingTop: "15px",
-              }}
-            >
-              <Label>Company</Label>
               <input
-                type="text"
-                id="companyName"
-                name="companyName"
-                onChange={(e) => onChange(e, "companyName")}
-                value={bookingInfo.companyName}
-                placeholder="Freespace."
+                onChange={(e) => onChange(e, "fullName")}
+                value={bookingInfo.fullName}
+                placeholder="Jon Doe"
+                required
                 style={{
                   border: "white",
                   outline: "none",
@@ -992,51 +769,171 @@ export const FloorPlanRootRoot1 = () => {
                   boxSizing: "border-box",
                 }}
               />
+              <Label>Email</Label>
+              <input
+                value={bookingInfo.email}
+                onChange={(e) => onChange(e, "email")}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Jon.doe@gmail.com"
+                style={{
+                  border: "white",
+                  outline: "none",
+                  borderBottom: "1px solid lightgray",
+                  width: "100%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  display: "inline-block",
+                  borderRadius: "4px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <Label>Time</Label>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  paddingTop: "4px",
+                }}
+              >
+                <div
+                  style={{
+                    flex: 4,
+                    width: "100%",
+                  }}
+                >
+                  <select
+                    style={{
+                      border: "0px",
+                      outline: "none",
+                      width: "100%",
+                      borderBottom: "2px solid #2e375b14",
+                      backgroundColor: "white",
+                    }}
+                    id="number-dd"
+                    name="number"
+                    onChange={(e) => onChange(e, "startTime")}
+                  >
+                    {Object.keys(Hours).map((hour) => (
+                      <option value={hour}>{hour}</option>
+                    ))}
+                  </select>
+                </div>
+                <label
+                  style={{
+                    flex: 1,
+                    width: "100%",
+                    textAlign: "center",
+                  }}
+                >
+                  to
+                </label>
+
+                <div
+                  style={{
+                    flex: 4,
+                    width: "100%",
+                  }}
+                >
+                  <select
+                    style={{
+                      border: "0px",
+                      outline: "none",
+                      width: "100%",
+                      borderBottom: "2px solid #2e375b14",
+                      backgroundColor: "white",
+                    }}
+                    id="number-dd"
+                    name="number"
+                    onChange={(e) => onChange(e, "endTime")}
+                  >
+                    {Object.keys(Minutes).map((minute) => (
+                      <option value={minute}>{minute}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <ToggleSwitch
+                  onChange={(event: any) => onChange(event, "toggle")}
+                  value={bookingInfo.isFullDay}
+                />
+              </div>
+
+              <div
+                style={{
+                  paddingTop: "15px",
+                }}
+              >
+                <Label>Company</Label>
+                <input
+                  type="text"
+                  id="companyName"
+                  name="companyName"
+                  onChange={(e) => onChange(e, "companyName")}
+                  value={bookingInfo.companyName}
+                  placeholder="Freespace."
+                  style={{
+                    border: "white",
+                    outline: "none",
+                    borderBottom: "1px solid lightgray",
+                    width: "100%",
+                    padding: "12px 20px",
+                    margin: "8px 0",
+                    display: "inline-block",
+                    borderRadius: "4px",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+
+              <input
+                type="text"
+                id="comments"
+                name="comments"
+                onChange={(e) => onChange(e, "comments")}
+                value={bookingInfo.comments}
+                placeholder="Add Comments"
+                style={{
+                  border: "white",
+                  outline: "none",
+                  borderBottom: "1px solid lightgray",
+                  width: "100%",
+                  padding: "12px 20px",
+                  margin: "8px 0",
+                  display: "inline-block",
+                  borderRadius: "4px",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <button
+                style={{
+                  backgroundColor: "#F7707D",
+                  border: "none",
+                  fontSize: "14px",
+                  color: "#FDF0ED",
+                  padding: "18px",
+                  textAlign: "center",
+                  textDecoration: "none",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  width: "100%",
+                  borderRadius: "12px",
+                  marginTop: "34px",
+                }}
+                className="button"
+                onClick={onConfirmBooking}
+              >
+                Confirm Booking
+              </button>
             </div>
-
-            <input
-              type="text"
-              id="comments"
-              name="comments"
-              onChange={(e) => onChange(e, "comments")}
-              value={bookingInfo.comments}
-              placeholder="Add Comments"
-              style={{
-                border: "white",
-                outline: "none",
-                borderBottom: "1px solid lightgray",
-                width: "100%",
-                padding: "12px 20px",
-                margin: "8px 0",
-                display: "inline-block",
-                borderRadius: "4px",
-                boxSizing: "border-box",
-              }}
-            />
-
-            <button
-              style={{
-                backgroundColor: "#F7707D",
-                border: "none",
-                fontSize: "14px",
-                color: "#FDF0ED",
-                padding: "18px",
-                textAlign: "center",
-                textDecoration: "none",
-                overflow: "hidden",
-                cursor: "pointer",
-                width: "100%",
-                borderRadius: "12px",
-                marginTop: "34px",
-              }}
-              className="button"
-              onClick={onConfirmBooking}
-            >
-              Confirm Booking
-            </button>
-          </div>
-        </Content2>
-      </ContentBox>
+          </Content2>
+        </ContentBox>
+      )}
     </div>
   );
 };
@@ -1128,14 +1025,6 @@ const SpaceInOrangeCircleRootRootRoot = styled.img`
   bottom: 71.09%;
 `;
 
-const YourFullNameRootRootRoot = styled.div`
-  color: #444444;
-  font-size: 20px;
-  font-weight: 600;
-  font-family: Nunito;
-  white-space: nowrap;
-`;
-
 const HeaderContentBox = styled.div`
   display: flex;
   background: #f5f5f5;
@@ -1183,12 +1072,6 @@ const Checkin = styled.img`
   height: 16px;
   margin: 0px 3.43px 0px 0px;
 `;
-const Text1 = styled.div`
-  color: #444444;
-  font-size: 16px;
-  font-family: Nunito;
-  white-space: nowrap;
-`;
 
 const Text2 = styled.div`
   align-self: flex-start;
@@ -1218,31 +1101,11 @@ const Text4 = styled.div`
   white-space: nowrap;
 `;
 
-const Content1 = styled.div`
-  background: #a6b8b9;
-  padding: 0.25rem;
-  width: 100%;
-  height: 100%;
-`;
-
 const Content2 = styled.div`
   // background: #a6b8b9;
   padding: 0.25rem;
   width: 100%;
   height: 100%;
-`;
-
-const Row = styled.div`
-  &::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-`;
-
-const Column = styled.div`
-  float: left;
-  width: 100%;
 `;
 
 const FloorPlanRootRootRoot = styled.div`
@@ -1507,11 +1370,6 @@ const Ellipse3 = styled.img`
   height: 29px;
   align-self: flex-end;
   margin: 0px 0px 69.7px 0px;
-`;
-const Ellipse9 = styled.img`
-  width: 29px;
-  height: 29px;
-  margin: 0px 0px 0px 1.94px;
 `;
 
 const Ellipse18 = styled.img`
