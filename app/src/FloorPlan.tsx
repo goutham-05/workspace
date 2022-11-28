@@ -104,14 +104,12 @@ const ToggleSwitch = (props: any) => {
 };
 
 export const FloorPlan = () => {
-  const [bookingInfo, setBookingInfo] = useState<BookingInfo>(
-    {
-      startTime: Hours["10:00"],
-      endTime: Minutes["15 mins"],
-      comments: '',
-      isFullDay: false
-    } as BookingInfo
-  );
+  const [bookingInfo, setBookingInfo] = useState<BookingInfo>({
+    startTime: Hours["10:00"],
+    endTime: Minutes["15 mins"],
+    comments: "",
+    isFullDay: false,
+  } as BookingInfo);
 
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
@@ -146,6 +144,12 @@ export const FloorPlan = () => {
 
   const onSelectSeats = useCallback(
     (table: SeatingType) => {
+      const isTableBooked =
+        seatingTableList.find((seat) => seat.seatNo === table.seatNo)
+          ?.status === SEATING_STATUS.BOOKED;
+      if (isTableBooked) {
+        return true;
+      }
       const isTableExists = selectedSeats.find((seat) => seat === table.seatNo);
       if (isTableExists) {
         const filteredSeats = selectedSeats.filter(
@@ -165,7 +169,7 @@ export const FloorPlan = () => {
         });
       }
     },
-    [selectedSeats, bookingInfo]
+    [selectedSeats, bookingInfo, seatingTableList]
   );
 
   const onChange = useCallback(
@@ -188,7 +192,7 @@ export const FloorPlan = () => {
   );
 
   const onConfirmBooking = useCallback(() => {
-    const hasEmptyFields = Object.keys(bookingInfo).length === 7;
+    const hasEmptyFields = Object.keys(bookingInfo).length === 8;
     if (!selectedSeats.length) {
       toast("Please select at least one seat!");
     }

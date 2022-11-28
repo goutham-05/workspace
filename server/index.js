@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const BookingModule = require('./models/booking');
 
 // Set up default mongoose connection
-const mongoDB = 'mongodb://127.0.0.1/freespace';
+const mongoDB = 'mongodb+srv://goutham1494:Welcome123@cluster0.7vkr26o.mongodb.net/freespace';
 
 mongoose.connect(mongoDB,
     {
@@ -65,7 +65,6 @@ app.put('/update-workspace-by-name', async (req, res) => {
                         if (err) {
                             res.send(err);
                         } else {
-                            console.log(updatedProfile);
                             res.send(updatedProfile);
                         }
                     });
