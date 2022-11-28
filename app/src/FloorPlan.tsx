@@ -6,6 +6,9 @@ import dateFnsFormat from "date-fns/format";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 
 export const API_URL = "http://127.0.0.1:3001/";
@@ -102,7 +105,12 @@ const ToggleSwitch = (props: any) => {
 
 export const FloorPlan = () => {
   const [bookingInfo, setBookingInfo] = useState<BookingInfo>(
-    {} as BookingInfo
+    {
+      startTime: Hours["10:00"],
+      endTime: Minutes["15 mins"],
+      comments: '',
+      isFullDay: false
+    } as BookingInfo
   );
 
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
@@ -182,23 +190,23 @@ export const FloorPlan = () => {
   const onConfirmBooking = useCallback(() => {
     const hasEmptyFields = Object.keys(bookingInfo).length === 7;
     if (!selectedSeats.length) {
-      alert("Please select at least one seat");
+      toast("Please select at least one seat!");
     }
 
     if (hasEmptyFields) {
-      console.log("Koca: hasEmptyFields", hasEmptyFields);
       axios
         .put(API_URL + `update-workspace-by-name`, bookingInfo)
         .then((res) => {
-          console.log("Koca: res ", res);
           if (res) {
+            toast("Booking done successfully!");
+
             getWorkspace();
           } else {
             getWorkspace();
           }
         });
     } else {
-      alert("Please fill all the fields");
+      toast("Please fill all the fields!");
     }
   }, [bookingInfo, selectedSeats]);
 
@@ -240,6 +248,8 @@ export const FloorPlan = () => {
 
       {seatingTableList && (
         <ContentBox>
+          <ToastContainer />
+
           <FloorPlanRootRootRoot>
             <WhiteRectangle />
             <WhiteRectangle1 />
