@@ -29,58 +29,36 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.get(`/get-workspace-by-name/:name`, async (req, res) => {
+    const { name, startTime, endTime } = req.query;
 
-    const seatingInfo = req.body;
+    const [seatingData, bookingList] = await Promise.all(['workspace', 'bookings'].map(async (key) => await db.collection(key).find({ workSpace: name }).toArray()));
 
-    const startTime = seatingInfo.startTime;
-
-    const endTime = seatingInfo.endTime;
-
-    const workspaceName = req.params.name;
-
-    const seatingData = await db.collection('workspace').find({ name: workspaceName }).toArray();
     const seatingList = seatingData[0].seatingList;
 
-    const bookingList = await db.collection('bookings').find().toArray();
-    console.log('Koca: bookingList ', bookingList);
+    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === startTime && booking.endTime === endTime);
 
-    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === '1:00' && booking.endTime === '15');
-
-    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => filteredBookingList.map((booking) => ({
+    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => ({
         ...seating,
-        status: booking.ids.includes(seating.seatNo) ? 'BOOKED' : 'AVAILABLE'
-    }))) : seatingList;
+        status: filteredBookingList.some((booking) => booking.ids.includes(seating.seatNo)) ? 'BOOKED' : 'AVAILABLE'
+    })) : seatingList;
 
-    res.send(filteredSeatingList.flat());
+    res.send(filteredSeatingList);
 });
 
 
 app.post('/get-seatlist-by-time', async (req, res) => {
+    const { name, startTime, endTime } = req.query;
 
-    // const { seatingInfo, startTime, endTime, workspaceName } = req.body;
+    const [seatingData, bookingList] = await Promise.all(['workspace', 'bookings'].map(async (key) => await db.collection(key).find({ workSpace: name }).toArray()));
 
-    const seatingInfo = req.body;
+    const seatingList = seatingData[0].seatingList;
 
-    const startTime = seatingInfo.startTime;
+    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === startTime && booking.endTime === endTime);
 
-    const endTime = seatingInfo.endTime;
-
-    const workspaceName = seatingInfo.workSpace;
-
-    const seatingData = await db.collection('workspace').find({ name: workspaceName }).toArray();
-    const seatingList = seatingData[0];
-
-    const bookingData = await db.collection('bookings').find({ name: workspaceName }).toArray();
-
-    const bookingList = bookingData[0];
-
-    const filteredBookingList = bookingList.filter((booking) => booking.startTime === startTime && booking.endTime === endTime);
-    console.log('Koca: filteredBookingList ', filteredBookingList);
-
-    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => filteredBookingList.map((booking) => ({
+    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => ({
         ...seating,
-        status: booking.ids.includes(seating.seatNo) ? 'BOOKED' : 'AVAILABLE'
-    }))) : seatingList;
+        status: filteredBookingList.some((booking) => booking.ids.includes(seating.seatNo)) ? 'BOOKED' : 'AVAILABLE'
+    })) : seatingList;
 
     res.send(filteredSeatingList);
 });
@@ -88,35 +66,31 @@ app.post('/get-seatlist-by-time', async (req, res) => {
 
 
 app.put('/update-workspace-by-name', async (req, res) => {
-
     const bookingInfo = req.body;
     bookingInfo.workSpace = 'freespace';
-    console.log('Koca: bookingInfo ', bookingInfo);
 
-    const seatingData = await db.collection('workspace').find({ name: 'freespace' }).toArray();
+    const seatingData = await db.collection('workspace').find({ workSpace: 'freespace' }).toArray();
     const seatingList = seatingData[0].seatingList;
 
-    const bookingData = await db.collection('bookings').find({ name: 'freespace' }).toArray();
-
-    const bookingList = bookingData[0];
+    const bookingList = await db.collection('bookings').find({ workSpace: 'freespace' }).toArray();
 
     const booking = new BookingModule(bookingInfo);
     if (booking) {
         booking.save(function (err) {
             if (err) {
-                res.status(400).send('Unable to save shark to database');
+                res.status(400).send('Unable to save details to database');
             } else {
                 if (seatingList.length) {
 
-                    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === startTime && booking.endTime === endTime);
+                    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === bookingInfo.startTime && booking.endTime === bookingInfo.endTime);
 
-                    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => filteredBookingList.map((booking) => ({
+                    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => ({
                         ...seating,
-                        status: booking.ids.includes(seating.seatNo) ? 'BOOKED' : 'AVAILABLE'
-                    }))) : seatingList;
+                        status: filteredBookingList.some((booking) => booking.ids.includes(seating.seatNo)) ? 'BOOKED' : 'AVAILABLE'
+                    })) : seatingList;
+
 
                     res.send(filteredSeatingList);
-
                 }
             }
         });

@@ -103,13 +103,15 @@ const ToggleSwitch = (props: any) => {
   );
 };
 
+const initialState = {
+  startTime: Hours["1:00"],
+  endTime: Minutes["15 mins"],
+  comments: "",
+  isFullDay: false,
+} as BookingInfo;
+
 export const FloorPlan = () => {
-  const [bookingInfo, setBookingInfo] = useState<BookingInfo>({
-    startTime: Hours["10:00"],
-    endTime: Minutes["15 mins"],
-    comments: "",
-    isFullDay: false,
-  } as BookingInfo);
+  const [bookingInfo, setBookingInfo] = useState<BookingInfo>(initialState);
 
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
@@ -117,7 +119,13 @@ export const FloorPlan = () => {
 
   const getWorkspace = () => {
     axios
-      .get(API_URL + `get-workspace-by-name/${WORKSPACE_NAME}`)
+      .get(API_URL + `get-workspace-by-name/${WORKSPACE_NAME}`, {
+        params: {
+          name: WORKSPACE_NAME,
+          startTime: bookingInfo.startTime,
+          endTime: bookingInfo.endTime,
+        },
+      })
       .then((res) => {
         console.log("Koca: res ", res);
         if (res) {
@@ -204,8 +212,17 @@ export const FloorPlan = () => {
         .put(API_URL + `update-workspace-by-name`, bookingInfo)
         .then((res) => {
           if (res) {
+            console.log("Koca: res ", res);
             toast("Booking done successfully!");
-
+            setBookingInfo({
+              ...initialState,
+              fullName: "",
+              email: "",
+              companyName: "",
+              comments: "",
+              ids: [],
+              isFullDay: false,
+            });
             getWorkspace();
           } else {
             getWorkspace();
@@ -229,8 +246,8 @@ export const FloorPlan = () => {
       });
   }, []);
 
+  console.log("Koca: bookingInfo", bookingInfo);
   console.log("seatingTableList: ", seatingTableList);
-
   return (
     <div
       style={{

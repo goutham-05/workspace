@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const moduleSchema = mongoose.Schema(
     {
-        name: {
+        workSpace: {
             type: String,
         },
         data: {
