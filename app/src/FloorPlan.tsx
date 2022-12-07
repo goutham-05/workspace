@@ -121,7 +121,7 @@ export const FloorPlan = () => {
       .then((res) => {
         console.log("Koca: res ", res);
         if (res) {
-          setSeatingTableList(res.data.seatingList);
+          setSeatingTableList(res.data);
         } else {
           setSeatingTableList([]);
         }
@@ -144,6 +144,7 @@ export const FloorPlan = () => {
 
   const onSelectSeats = useCallback(
     (table: SeatingType) => {
+      console.log("Koca: table ", table);
       const isTableBooked =
         seatingTableList.find((seat) => seat.seatNo === table.seatNo)
           ?.status === SEATING_STATUS.BOOKED;
@@ -192,6 +193,7 @@ export const FloorPlan = () => {
   );
 
   const onConfirmBooking = useCallback(() => {
+    console.log("Koca: bookingInfo", bookingInfo);
     const hasEmptyFields = Object.keys(bookingInfo).length === 8;
     if (!selectedSeats.length) {
       toast("Please select at least one seat!");
@@ -213,6 +215,21 @@ export const FloorPlan = () => {
       toast("Please fill all the fields!");
     }
   }, [bookingInfo, selectedSeats]);
+
+  const onChangeTimePeriod = useCallback((startTime: string) => {
+    const filteredSeatingList = axios
+      .get(API_URL + `get-seatlist-by-time/${WORKSPACE_NAME}/${startTime}`)
+      .then((res) => {
+        console.log("Koca: res ", res);
+        if (res) {
+          setSeatingTableList(res.data.seatingList);
+        } else {
+          setSeatingTableList([]);
+        }
+      });
+  }, []);
+
+  console.log("seatingTableList: ", seatingTableList);
 
   return (
     <div
@@ -573,7 +590,9 @@ export const FloorPlan = () => {
                             key={index}
                             onClick={() => onSelectSeats(table)}
                             src={
-                              selectedSeats.includes(table.seatNo)
+                              table.status === SEATING_STATUS.BOOKED
+                                ? seatingStatus.booked
+                                : selectedSeats.includes(table.seatNo)
                                 ? seatingStatus.selected
                                 : seatingStatus.available
                             }

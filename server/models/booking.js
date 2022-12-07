@@ -8,7 +8,7 @@ const moduleSchema = mongoose.Schema(
         email: {
             type: String
         },
-        seatingIds: {
+        ids: {
             type: Array
         },
         startTime: {
@@ -24,6 +24,9 @@ const moduleSchema = mongoose.Schema(
             type: String
         },
         comments: {
+            type: String
+        },
+        workSpace: {
             type: String
         }
     },

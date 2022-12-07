@@ -29,45 +29,94 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.get(`/get-workspace-by-name/:name`, async (req, res) => {
+
+    const seatingInfo = req.body;
+
+    const startTime = seatingInfo.startTime;
+
+    const endTime = seatingInfo.endTime;
+
     const workspaceName = req.params.name;
 
-    const data = await db.collection('workspace').find({ name: workspaceName }).toArray();
-    res.send(data[0]);
+    const seatingData = await db.collection('workspace').find({ name: workspaceName }).toArray();
+    const seatingList = seatingData[0].seatingList;
+
+    const bookingList = await db.collection('bookings').find().toArray();
+    console.log('Koca: bookingList ', bookingList);
+
+    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === '1:00' && booking.endTime === '15');
+
+    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => filteredBookingList.map((booking) => ({
+        ...seating,
+        status: booking.ids.includes(seating.seatNo) ? 'BOOKED' : 'AVAILABLE'
+    }))) : seatingList;
+
+    res.send(filteredSeatingList.flat());
 });
 
-app.put('/update-workspace-by-name', async (req, res) => {
-    const bookingInfo = req.body;
-    const workspaceData = await db.collection('workspace').find({ name: 'freespace' }).toArray();
 
-    const booking = new BookingModule(req.body);
+app.post('/get-seatlist-by-time', async (req, res) => {
+
+    // const { seatingInfo, startTime, endTime, workspaceName } = req.body;
+
+    const seatingInfo = req.body;
+
+    const startTime = seatingInfo.startTime;
+
+    const endTime = seatingInfo.endTime;
+
+    const workspaceName = seatingInfo.workSpace;
+
+    const seatingData = await db.collection('workspace').find({ name: workspaceName }).toArray();
+    const seatingList = seatingData[0];
+
+    const bookingData = await db.collection('bookings').find({ name: workspaceName }).toArray();
+
+    const bookingList = bookingData[0];
+
+    const filteredBookingList = bookingList.filter((booking) => booking.startTime === startTime && booking.endTime === endTime);
+    console.log('Koca: filteredBookingList ', filteredBookingList);
+
+    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => filteredBookingList.map((booking) => ({
+        ...seating,
+        status: booking.ids.includes(seating.seatNo) ? 'BOOKED' : 'AVAILABLE'
+    }))) : seatingList;
+
+    res.send(filteredSeatingList);
+});
+
+
+
+app.put('/update-workspace-by-name', async (req, res) => {
+
+    const bookingInfo = req.body;
+    bookingInfo.workSpace = 'freespace';
+    console.log('Koca: bookingInfo ', bookingInfo);
+
+    const seatingData = await db.collection('workspace').find({ name: 'freespace' }).toArray();
+    const seatingList = seatingData[0].seatingList;
+
+    const bookingData = await db.collection('bookings').find({ name: 'freespace' }).toArray();
+
+    const bookingList = bookingData[0];
+
+    const booking = new BookingModule(bookingInfo);
     if (booking) {
         booking.save(function (err) {
             if (err) {
                 res.status(400).send('Unable to save shark to database');
             } else {
-                if (workspaceData.length) {
-                    const mappedData = workspaceData[0].seatingList.map((data) => {
-                        if (bookingInfo.ids.includes(data.seatNo)) {
-                            return {
-                                ...data,
-                                status: data.status === 'BOOKED' ? 'AVAILABLE' : 'BOOKED'
-                            }
-                        } else {
-                            return data
-                        }
-                    });
+                if (seatingList.length) {
 
-                    db.collection('workspace').findOneAndUpdate({ _id: workspaceData[0]._id }, {
-                        $set: {
-                            seatingList: mappedData
-                        }
-                    }, { new: true, upsert: false, remove: {}, fields: {} }, function (err, updatedProfile) {
-                        if (err) {
-                            res.send(err);
-                        } else {
-                            res.send(updatedProfile);
-                        }
-                    });
+                    const filteredBookingList = bookingList?.filter((booking) => booking.startTime === startTime && booking.endTime === endTime);
+
+                    const filteredSeatingList = filteredBookingList?.length ? seatingList.map((seating) => filteredBookingList.map((booking) => ({
+                        ...seating,
+                        status: booking.ids.includes(seating.seatNo) ? 'BOOKED' : 'AVAILABLE'
+                    }))) : seatingList;
+
+                    res.send(filteredSeatingList);
+
                 }
             }
         });
